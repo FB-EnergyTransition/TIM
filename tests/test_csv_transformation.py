@@ -1,5 +1,6 @@
 import pytest
-from csv_conversion import *
+from csv_conversion import reformat_time
+from csv_conversion import read_write_csv
 def test_reformat_time_1():
     input = '01.01.2018 00:00:00'
     expected_output = '2018-01-01T00:00:00.000Z'
@@ -26,15 +27,4 @@ def test_convert_row():
                 'Preis EXAA 10:15 Auktion']]
 
     assert read_write_csv.convert_row(0, row) == rowlist
-
-# def test_outputcsv():
-#     # input = inputcsv()
-#     # output = outputcsv()
-#     input = '../resources/test.csv'
-#     output = '../resources/test_formatted.csv'
-#
-#     assert readcsv.convert_csv(input) == output
-
-
-
 

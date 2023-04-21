@@ -1,6 +1,5 @@
 import csv
 from csv_conversion import reformat_time
-from csv_conversion import delete_file
 
 def writedatatocsvfile(rowlist, outfile):
     with open(outfile, 'a', newline='') as file:
@@ -37,4 +36,3 @@ def convert_row(index, row):
 
     return rowlist
 
-    #writedatatocsvfile(rowlist)
