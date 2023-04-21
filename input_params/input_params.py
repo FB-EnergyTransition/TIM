@@ -2,7 +2,7 @@ import argparse
 from os import path
 
 
-def process_cli_arguments():
+def process_input_params():
     parser = argparse.ArgumentParser()
     parser.add_argument('-input_file', type=str, default="input.csv",
                         help="name of the csv file that shall be uploaded to InfluxDB")
