@@ -1,3 +1,5 @@
+import pytest
+
 import csv_conversion
 from csv_conversion import readcsv
 def test_reformat_time_1():
@@ -11,3 +13,21 @@ def test_reformat_time_2():
     expected_output = '2023-04-23T02:05:44.000Z'
 
     assert csv_conversion.readcsv.reformattime(input) == expected_output
+
+@pytest.fixture
+def inputcsv():
+    return '../resources/test.csv'
+@pytest.fixture()
+def outputcsv():
+    return '../resources/test_formatted.csv'
+def test_outputcsv():
+    input = inputcsv()
+    output = outputcsv()
+    # input = '../resources/test.csv'
+    # output = '../resources/test_formatted.csv'
+
+    assert csv_conversion.readcsv.convert_csv(input) == output
+
+
+
+
