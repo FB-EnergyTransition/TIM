@@ -1,6 +1,5 @@
 import pytest
 import csv_conversion
-from csv_conversion import readcsv
 def test_reformat_time_1():
     input = '01.01.2018 00:00:00'
     expected_output = '2018-01-01T00:00:00.000Z'
