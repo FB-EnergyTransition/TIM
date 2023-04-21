@@ -35,13 +35,15 @@ def convert_csv(file):
         next(csvfile)
         csvreader = csv.reader(csvfile, delimiter=';')
         for index, row in enumerate(csvreader):
-            convert_row(index, row)
+            rowlist = convert_row(index, row)
+            writedatatocsvfile(rowlist)
 
     return outfile
 
 
 def convert_row(indicator, row):
-    time = reformattime(row[1])
+    print(row)
+    time = reformattime(row[0])
     value = row[2].replace(",", ".")
     # comments == requirements
     starttime = "2018-01-01T00:15:00.000Z"  # method to read only first time
@@ -54,7 +56,12 @@ def convert_row(indicator, row):
     rowlist = [['','',indicator, starttime, stoptime,
                        time, value, field, measurement]]
 
-    writedatatocsvfile(rowlist)
+
+    print(rowlist)
+
+    return rowlist
+
+    #writedatatocsvfile(rowlist)
 
 
 convert_csv(file)
