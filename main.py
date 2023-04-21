@@ -1,6 +1,8 @@
+import input_params
+
 
 def main():
-    pass
+    args = input_params.process_cli_arguments()
 
 
 if __name__ == "__main__":
