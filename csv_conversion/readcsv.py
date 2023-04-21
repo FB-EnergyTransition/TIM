@@ -4,28 +4,40 @@ import os
 file = '../resources/test.csv'
 outfile = file.replace('.csv', '_formatted.csv')
 
-
 def checkoutfile(outfile):
     if os.path.exists(outfile):
         os.remove(outfile)
 
-
 checkoutfile(outfile)
 
+# def writedatatocsvfile(outfile, indicator, starttime, stoptime,
+#                        time, value, field, measurement):
+#     with open(outfile, 'a', newline='') as file:
+#         csvwriter = csv.writer(file)
+#         # csvwriter = csv.writer(file, quoting=csv.QUOTE_NONE, escapechar='')
+#         datastream = ',,{},{},{},{},{},{},{}'.format(indicator, starttime,
+#                                                      stoptime, time, value,
+#                                                      field, measurement)
+#
+#         print(datastream)
+#         csvwriter.writerow([str(datastream)])
+#         # print(time)
+#         # csvwriter.writerow([time])
 
-def writedatatocsvfile(outfile, indicator, starttime, stoptime,
-                       time, value, field, measurement):
+def writedatatocsvfile(rowlist):
     with open(outfile, 'a', newline='') as file:
         csvwriter = csv.writer(file)
         # csvwriter = csv.writer(file, quoting=csv.QUOTE_NONE, escapechar='')
-        datastream = ',,{},{},{},{},{},{},{}'.format(indicator, starttime,
-                                                     stoptime, time, value,
-                                                     field, measurement)
+        # datastream = ',,{},{},{},{},{},{},{}'.format(indicator, starttime,
+        #                                              stoptime, time, value,
+        #                                              field, measurement)
 
-        print(datastream)
-        csvwriter.writerow([str(datastream)])
+        # print(datastream)
+        csvwriter.writerows(rowlist)
+
         # print(time)
         # csvwriter.writerow([time])
+
 
 
 def reformattime(intime):
@@ -55,8 +67,6 @@ def convert_csv(file):
         for index, row in enumerate(csvreader):
             convert_row(index, row)
 
-
-
     return outfile
 
 
@@ -70,7 +80,15 @@ def convert_row(indicator, row):
     # (skipped above)
     field = "EUR/kWh"
     measurement = "Preis EXAA 10:15 Auktion"
-    writedatatocsvfile(outfile, indicator, starttime, stoptime,
-                       time, value, field, measurement)
+
+    rowlist = [['','',indicator, starttime, stoptime,
+                       time, value, field, measurement]]
+
+    writedatatocsvfile(rowlist)
+
+    # writedatatocsvfile(outfile, indicator, starttime, stoptime,
+    #                    time, value, field, measurement)
+
+
 
 convert_csv(file)
