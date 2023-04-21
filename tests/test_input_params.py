@@ -1,6 +1,4 @@
 import input_params
-import pytest
-
 
 def test_existing_and_valid_csv_path():
     path = '../resources/test.csv'
