@@ -1,16 +1,16 @@
 import pytest
-from csv_conversion import readcsv
+from csv_conversion import *
 def test_reformat_time_1():
     input = '01.01.2018 00:00:00'
     expected_output = '2018-01-01T00:00:00.000Z'
 
-    assert readcsv.reformattime(input) == expected_output
+    assert reformat_time.reformattime(input) == expected_output
 
 def test_reformat_time_2():
     input = '23.04.2023 02:05:44'
     expected_output = '2023-04-23T02:05:44.000Z'
 
-    assert readcsv.reformattime(input) == expected_output
+    assert reformat_time.reformattime(input) == expected_output
 
 @pytest.fixture
 def inputcsv():
@@ -25,7 +25,7 @@ def test_convert_row():
                 '2018-01-01T00:00:00.000Z', '-6.00', 'EUR/kWh',
                 'Preis EXAA 10:15 Auktion']]
 
-    assert readcsv.convert_row(0, row) == rowlist
+    assert read_write_csv.convert_row(0, row) == rowlist
 
 # def test_outputcsv():
 #     # input = inputcsv()
