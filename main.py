@@ -1,5 +1,5 @@
 from input_params import input_params
-from csv_conversion import *
+from csv_conversion import conversion_main
 
 infile = './resources/test.csv'
 
