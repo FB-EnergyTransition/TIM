@@ -1,4 +1,5 @@
-import input_params
+from input_params import input_params
+
 
 def test_existing_and_valid_csv_path():
     path = '../resources/test.csv'
@@ -14,3 +15,4 @@ def test_invalid_file_type_csv():
     path = '../resources/test.txt'
     expected_output = False
     assert input_params.validate_csv_path(path) == expected_output
+
