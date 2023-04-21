@@ -10,35 +10,10 @@ def checkoutfile(outfile):
 
 checkoutfile(outfile)
 
-# def writedatatocsvfile(outfile, indicator, starttime, stoptime,
-#                        time, value, field, measurement):
-#     with open(outfile, 'a', newline='') as file:
-#         csvwriter = csv.writer(file)
-#         # csvwriter = csv.writer(file, quoting=csv.QUOTE_NONE, escapechar='')
-#         datastream = ',,{},{},{},{},{},{},{}'.format(indicator, starttime,
-#                                                      stoptime, time, value,
-#                                                      field, measurement)
-#
-#         print(datastream)
-#         csvwriter.writerow([str(datastream)])
-#         # print(time)
-#         # csvwriter.writerow([time])
-
 def writedatatocsvfile(rowlist):
     with open(outfile, 'a', newline='') as file:
         csvwriter = csv.writer(file)
-        # csvwriter = csv.writer(file, quoting=csv.QUOTE_NONE, escapechar='')
-        # datastream = ',,{},{},{},{},{},{},{}'.format(indicator, starttime,
-        #                                              stoptime, time, value,
-        #                                              field, measurement)
-
-        # print(datastream)
         csvwriter.writerows(rowlist)
-
-        # print(time)
-        # csvwriter.writerow([time])
-
-
 
 def reformattime(intime):
     day = intime[0:2]
@@ -52,18 +27,13 @@ def reformattime(intime):
         year, month, day, hour, minutes, seconds)
 
     return outtime
-    # print(outtime)
-    # 2022-12-31T23:59:59.999Z
-
 
 def convert_csv(file):
     # read and write lines one by one (no saving in memory)
     with open(file, newline='') as csvfile:
         # scip first line with next
         next(csvfile)
-        # spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
         csvreader = csv.reader(csvfile, delimiter=';')
-        # indicator = 0
         for index, row in enumerate(csvreader):
             convert_row(index, row)
 
@@ -85,10 +55,6 @@ def convert_row(indicator, row):
                        time, value, field, measurement]]
 
     writedatatocsvfile(rowlist)
-
-    # writedatatocsvfile(outfile, indicator, starttime, stoptime,
-    #                    time, value, field, measurement)
-
 
 
 convert_csv(file)
