@@ -1,6 +1,5 @@
 from input_params import input_params
 
-
 def test_existing_and_valid_csv_path():
     path = '../resources/test.csv'
     expected_output = True
