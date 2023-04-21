@@ -43,6 +43,7 @@ def reformattime(intime):
     # print(outtime)
     # 2022-12-31T23:59:59.999Z
 
+
 def convert_csv(file):
     # read and write lines one by one (no saving in memory)
     with open(file, newline='') as csvfile:
@@ -50,27 +51,26 @@ def convert_csv(file):
         next(csvfile)
         # spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
         csvreader = csv.reader(csvfile, delimiter=';')
-        indicator = 0
-        for row in csvreader:
-            time = reformattime(row[1])
-            value = row[2].replace(",", ".")
-            # comments == requirements
-            starttime = "2018-01-01T00:15:00.000Z" # method to read only first time
-            stoptime = "2018-01-01T04:00:00.000Z" # method to read last time
-            # methods to read this information from the first line:
-            # (skipped above)
-            field = "EUR/kWh"
-            measurement = "Preis EXAA 10:15 Auktion"
+        # indicator = 0
+        for index, row in enumerate(csvreader):
+            convert_row(index, row)
 
-            writedatatocsvfile(outfile, indicator, starttime, stoptime,
-                               time, value, field, measurement)
 
-            indicator += 1
 
     return outfile
 
-            # writetimetocsvfile(outfile, time)
-            # print(', '.join(row))
-            # reformattime(row[1])        # print(row[1])
+
+def convert_row(indicator, row):
+    time = reformattime(row[1])
+    value = row[2].replace(",", ".")
+    # comments == requirements
+    starttime = "2018-01-01T00:15:00.000Z"  # method to read only first time
+    stoptime = "2018-01-01T04:00:00.000Z"  # method to read last time
+    # methods to read this information from the first line:
+    # (skipped above)
+    field = "EUR/kWh"
+    measurement = "Preis EXAA 10:15 Auktion"
+    writedatatocsvfile(outfile, indicator, starttime, stoptime,
+                       time, value, field, measurement)
 
 convert_csv(file)
