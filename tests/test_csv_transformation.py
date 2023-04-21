@@ -21,7 +21,9 @@ def outputcsv():
 
 def test_convert_row():
     row = ['01.01.2018 00:00:00', '01.01.2018 00:15:00', '-6,00', '', '']
-    rowlist = [['', '', 0, '2018-01-01T00:15:00.000Z', '2018-01-01T04:00:00.000Z', '2018-01-01T00:00:00.000Z', '-6.00', 'EUR/kWh', 'Preis EXAA 10:15 Auktion']]
+    rowlist = [['', '', 0, '2018-01-01T00:15:00.000Z', '2018-01-01T04:00:00.000Z',
+                '2018-01-01T00:00:00.000Z', '-6.00', 'EUR/kWh',
+                'Preis EXAA 10:15 Auktion']]
     # expectedoutput = ',,0,2018-01-01T00:15:00.000Z,2018-01-01T04:00:00.000Z,2018-01-01T00:15:00.000Z,-6.00,EUR/kWh,Preis EXAA 10:15 Auktion'
 
     assert readcsv.convert_row(0, row) == rowlist
