@@ -11,7 +11,8 @@ def get_first_and_last_datetime(filename):
         next(csvfile)
         csvreader = csv.reader(csvfile, delimiter=';')
         csvList = list(csvreader)
-        return csvList[0][0], csvList[-1][0]
+        return reformat_time.reformattime(csvList[0][0]), \
+            reformat_time.reformattime(csvList[-1][0])
 
 
 def convert_csv(file, outfile):
