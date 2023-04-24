@@ -6,7 +6,7 @@ infile = './resources/test.csv'
 
 def main():
     # args = input_params.process_input_params()
-    conversion_main.convert_csv(infile)
+    csv_conversion_main.convert_csv(infile)
     # print(args)
 
 
