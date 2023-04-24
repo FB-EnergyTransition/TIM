@@ -2,6 +2,7 @@ import csv
 
 
 def write_header(outfile):
+
     def write_first_line():
         # first_line = '#group,false,true,true,false,false,true,true,'
         first_line = ['#group', 'false', 'true', 'true', 'false',

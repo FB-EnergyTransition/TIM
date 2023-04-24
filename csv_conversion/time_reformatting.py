@@ -1,4 +1,4 @@
-def reformattime(intime):
+def reformat_time(intime):
     day = intime[0:2]
     month = intime[3:5]
     year = intime[6:10]

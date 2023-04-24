@@ -1,74 +1,59 @@
 import csv
-from csv_conversion import reformat_time
+from csv_conversion import time_reformatting
 
-def writedatatocsvfile(rowlist, outfile):
+
+def write_data_to_outfile(row_list, outfile):
     with open(outfile, 'a', newline='') as file:
-        csvwriter = csv.writer(file)
-        csvwriter.writerows(rowlist)
+        csv_writer = csv.writer(file)
+        csv_writer.writerows(row_list)
+
 
 def get_first_and_last_datetime(filename):
-    with open(filename, newline='') as csvfile:
-        next(csvfile)
-        csvreader = csv.reader(csvfile, delimiter=';')
-        csvList = list(csvreader)
-        return reformat_time.reformattime(csvList[0][0]), \
-            reformat_time.reformattime(csvList[-1][0])
+    with open(filename, newline='') as csv_file:
+        next(csv_file)
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        csv_list = list(csv_reader)
+        return time_reformatting.reformat_time(csv_list[0][0]), \
+            time_reformatting.reformat_time(csv_list[-1][0])
 
 
-def convert_csv(file, outfile):
-    startEndArray = get_first_and_last_datetime(file)
-    measurement_field_list = get_measurement_field(file)
-    # read and write lines one by one (no saving in memory)
-    with open(file, newline='') as csvfile:
-        # scip first line with next
-        next(csvfile)
-        csvreader = csv.reader(csvfile, delimiter=';')
-        for index, row in enumerate(csvreader):
-            rowlist = convert_row(index, row, startEndArray, measurement_field_list)
-            # rowlist = add_startdate_and_enddate(rowlist, startdate, enddate)
-            writedatatocsvfile(rowlist, outfile)
-
-def get_measurement_field(file):
-    with open(file, newline='') as csvfile:
-        csvreader = csv.reader(csvfile, delimiter=';')
-        for row in csvreader:
-            firstline = row
+def get_measurement_name(infile):
+    with open(infile, newline='') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for row in csv_reader:
+            first_line = row
             break
 
-    measurement_field = firstline[2]
+    measurement_name = first_line[1] # später i anstelle von 1
 
-    # 1) extract field (== unit indicated by [])
-    field = measurement_field[measurement_field.find('[') +
-                              1: measurement_field.find(']')]
-
-    # 2) extract rest of string (== measurement) removing field
-    measurement = measurement_field.replace(field, '').\
-        replace('[', '').\
-        replace(']', '').\
-        rstrip()
-
-    measurement_field_list = []
-    measurement_field_list.extend((field, measurement))
-
-    return measurement_field_list
+    return measurement_name
 
 
-
-def convert_row(index, row, startEndArray, measurement_field_list):
-    time = reformat_time.reformattime(row[0])
-    value = row[2].replace(",", ".")
+def convert_row(index, row, start_end_array, infile):
+    time = time_reformatting.reformat_time(row[0])
+    value = row[1] # später i anstelle von 1
     # comments == requirements
-    starttime = startEndArray[0]  # method to read only first time
-    stoptime = startEndArray[1]  # method to read last time
+    start_time = start_end_array[0]  # read first timestamp
+    stop_time = start_end_array[1]  # read last timestamp
 
-    # methods to read measurement and field informationfrom the first line:
-    field = measurement_field_list[0]
-    measurement = measurement_field_list[1]
+    # read measurement information from the first line:
+    field = "EUR/kWh" # später hier input parameter einfügen
+    measurement = get_measurement_name(infile)
 
-
-    rowlist = [['','', index, starttime, stoptime,
+    row_list = [['','', index, start_time, stop_time,
                        time, value, field, measurement]]
 
+    return row_list
 
-    return rowlist
 
+def convert_csv(infile, outfile):
+    start_end_array = get_first_and_last_datetime(infile)
+    # read and write lines one by one (no saving in memory)
+    with open(infile, newline='') as csv_file:
+        # skip first line with next
+        next(csv_file)
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for index, row in enumerate(csv_reader):
+            row_list = convert_row(index, row, start_end_array, infile)
+            # row_list = add_startdate_and_enddate(row_list, startdate, enddate)
+            write_data_to_outfile(row_list, outfile)
