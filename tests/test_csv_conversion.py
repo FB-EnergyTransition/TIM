@@ -23,7 +23,7 @@ def test_convert_row():
 
     assert csv_conversion_main.convert_row(0, row, ['2018-01-01T00:15:00.000Z',
                                       '2018-01-01T04:00:00.000Z'],
-                                      infile, item=1) == row_list
+                                      infile, item=1, units='EUR/kWh') == row_list
 
 
 def test_get_measurement_name():
