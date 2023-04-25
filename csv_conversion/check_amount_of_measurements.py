@@ -16,3 +16,4 @@ def check_if_splitting_is_needed(infile):
         return True
     else:
         return False
+
