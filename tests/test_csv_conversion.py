@@ -1,4 +1,3 @@
-import pytest
 from csv_conversion import time_reformatting, read_write_csv,\
     check_amount_of_measurements, csv_conversion_main, outfile_validation
 
@@ -36,13 +35,15 @@ def test_get_measurement_name():
 def test_get_number_of_measurements():
     infile = '../resources/test.csv'
     expected_result = 2
-    assert check_amount_of_measurements.get_number_of_measurements(infile) == expected_result
+    assert check_amount_of_measurements.get_number_of_measurements(infile)\
+           == expected_result
 
 
 def test_check_if_splitting_is_needed():
     infile = '../resources/test.csv'
     expected_result = True
-    assert check_amount_of_measurements.check_if_splitting_is_needed(infile) == expected_result
+    assert check_amount_of_measurements.check_if_splitting_is_needed(infile)\
+           == expected_result
 
 
 def test_check_existing_outfile():
