@@ -1,19 +1,18 @@
 import pytest
-from csv_conversion import time_reformatting, read_write_csv, check_amount_of_measurements
+from csv_conversion import time_reformatting, read_write_csv,\
+    check_amount_of_measurements, csv_conversion_main
 
 
 def test_reformat_time_1():
-    input = '01.01.2018 00:00:00'
+    time = '01.01.2018 00:00:00'
     expected_output = '2018-01-01T00:00:00.000Z'
-
-    assert time_reformatting.reformat_time(input) == expected_output
+    assert time_reformatting.reformat_time(time) == expected_output
 
 
 def test_reformat_time_2():
-    input = '23.04.2023 02:05:44'
+    time = '23.04.2023 02:05:44'
     expected_output = '2023-04-23T02:05:44.000Z'
-
-    assert time_reformatting.reformat_time(input) == expected_output
+    assert time_reformatting.reformat_time(time) == expected_output
 
 
 @pytest.fixture
@@ -25,22 +24,21 @@ def outputcsv():
 
 
 def test_convert_row():
-
     infile = '../resources/test.csv'
     row = ['01.01.2018 00:00:00', '-6.00', '', '']
-    rowlist = [['', '', 0, '2018-01-01T00:15:00.000Z', '2018-01-01T04:00:00.000Z',
+    row_list = [['', '', 0, '2018-01-01T00:15:00.000Z', '2018-01-01T04:00:00.000Z',
                 '2018-01-01T00:00:00.000Z', '-6.00', 'EUR/kWh',
                 'Preis EXAA 10:15 Auktion']]
 
-    assert read_write_csv.convert_row(0, row, ['2018-01-01T00:15:00.000Z',
+    assert csv_conversion_main.convert_row(0, row, ['2018-01-01T00:15:00.000Z',
                                       '2018-01-01T04:00:00.000Z'],
-                                      infile) == rowlist
+                                      infile, item=1) == row_list
 
 
 def test_get_measurement_name():
     infile = '../resources/test.csv'
     expected_result = "Preis EXAA 10:15 Auktion"
-    assert read_write_csv.get_measurement_name(infile) == expected_result
+    assert read_write_csv.get_measurement_name(infile, i=1) == expected_result
 
 
 def test_get_number_of_columns():
