@@ -37,3 +37,8 @@ def test_convert_row():
                                       '2018-01-01T04:00:00.000Z'],
                                       infile) == rowlist
 
+
+def test_get_measurement_name():
+    infile = '../resources/test.csv'
+    expected_result = "Preis EXAA 10:15 Auktion"
+    assert read_write_csv.get_measurement_name(infile) == expected_result
