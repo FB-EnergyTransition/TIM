@@ -5,14 +5,19 @@ from csv_conversion import read_write_csv, time_reformatting,\
     check_amount_of_measurements, outfile_validation, header_handling
 
 
-def convert_row(index, row, start_end_array, infile, item):
+def convert_row(index, row, start_end_array, infile, item, units):
     time = time_reformatting.reformat_time(row[0])
     value = row[item]
     start_time = start_end_array[0]  # read first timestamp
     stop_time = start_end_array[1]  # read last timestamp
 
+    # check if there is just one or more units
+    if type(units) is list:
+        field = units[item-1]
+    else:
+        field = units
+
     # read measurement information from the first line:
-    field = "EUR/kWh" # später hier input parameter einfügen
     measurement = read_write_csv.get_measurement_name(infile, item)
 
     row_list = [['','', index, start_time, stop_time,
@@ -21,7 +26,7 @@ def convert_row(index, row, start_end_array, infile, item):
     return row_list
 
 
-def convert_csv(infile):
+def convert_csv(infile, units):
     start_end_array = read_write_csv.get_first_and_last_datetime(infile)
 
     # check if there is more than 1 measurement in file
@@ -50,6 +55,6 @@ def convert_csv(infile):
 
             # read and write lines one by one (no saving in memory)
             for index, row in enumerate(csv_reader):
-                row_list = convert_row(index, row, start_end_array, infile, item)
+                row_list = convert_row(index, row, start_end_array, infile, item, units)
                 read_write_csv.write_data_to_outfile(row_list, outfile)
 

@@ -1,3 +1,5 @@
+import csv
+
 from input_params import input_params
 
 
@@ -45,12 +47,12 @@ def print_invalid_answer():
     print("Invalid option. Please chose Y or N.")
 
 
-def get_units(option):
+def get_units(option, infile):
     validate_unit_input(option)
     if option == "Y" or option == "YES" or option == "y" or option == "yes":
         unit_s = get_single_unit()
     else:
-        unit_s = get_multiple_units()
+        unit_s = get_multiple_units(infile)
     return unit_s
 
 
@@ -61,13 +63,27 @@ def get_single_unit():
     return input()
 
 
-def get_multiple_units():
-    pass # list column/measurement names and put all units into a list
+def get_multiple_units(infile):
+    units = []
+    with open(infile, newline='') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        header = []
+        for line in csv_reader:
+            header.append(line)
+            break
+        header[0].pop(0)
+        for item in header[0]:
+            print("Please type the unit for the measurement "
+                  + str(item) + ":")
+            unit = input()
+            units.append(unit)
+    print(units)
+    return units
 
 
 def ask_for_parameters():
     csv_file = get_csv_file()
     bucket = get_bucket()
-    unit_s = get_units(ask_for_units())
+    unit_s = get_units(ask_for_units(), csv_file)
 
     return [csv_file, bucket, unit_s]

@@ -45,11 +45,13 @@ def print_csv_requirements():
     """)
 
 
-def execute_option(option):
+def execute_option_and_get_args(option):
     validate_option(option)
     if option == "1":
-        get_user_input_params.ask_for_parameters()
+        args = get_user_input_params.ask_for_parameters()
     else:
         print_csv_requirements()
         print_options()
-        execute_option(get_option())
+        execute_option_and_get_args(get_option())
+        args = []
+    return args

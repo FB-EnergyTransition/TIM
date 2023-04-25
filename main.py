@@ -2,19 +2,20 @@
 from csv_conversion import csv_conversion_main
 from user_interaction import welcome_screen, option_handling
 
-infile = './resources/test.csv'
+# infile = './resources/test.csv'
 
 
 def main():
     welcome_screen.print_welcome_screen()
     option_handling.print_options()
     option = option_handling.get_option()
-    option_handling.execute_option(option)
+    args = option_handling.execute_option_and_get_args(option)
+    infile = args[0]
+    bucket = args[1]
+    unit_s = args[2]
 
+    csv_conversion_main.convert_csv(infile, unit_s)
 
-    # args = input_params.process_input_params()
-    csv_conversion_main.convert_csv(infile)
-    # print(args)
 
 
 if __name__ == "__main__":
