@@ -9,9 +9,10 @@ def main():
     welcome_screen.print_welcome_screen()
     option_handling.print_options()
     option = option_handling.get_option()
+
     args = option_handling.execute_option_and_get_args(option)
     infile = args[0]
-    bucket = args[1]
+    # bucket = args[1]
     unit_s = args[2]
 
     csv_conversion_main.convert_csv(infile, unit_s)
