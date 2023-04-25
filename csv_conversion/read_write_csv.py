@@ -9,7 +9,6 @@ def write_data_to_outfile(row_list, outfile):
     with open(outfile, 'a', newline='') as file:
         csv_writer = csv.writer(file)
         csv_writer.writerows(row_list)
-        print(outfile)
 
 
 def get_first_and_last_datetime(filename):
@@ -61,7 +60,8 @@ def convert_csv(infile):
     else:
         i = 1
 
-    for item in range(1, i):
+    for item in range(1, i+1):
+        print(item)
 
         with open(infile, newline='') as csv_file:
             # skip first line with next
@@ -71,10 +71,11 @@ def convert_csv(infile):
             measurement_name = get_measurement_name(infile, item)
             measurement = outfile_validation.check_measurement_name(measurement_name)
             outfile = infile.replace('.csv', '_' + measurement + '_formatted.csv')
-            print(outfile)
+
             if outfile_validation.check_existing_outfile(outfile):
                 os.remove(outfile)
             header_handling.write_header(outfile)
+
 
             for index, row in enumerate(csv_reader):
                 row_list = convert_row(index, row, start_end_array, infile, item)
