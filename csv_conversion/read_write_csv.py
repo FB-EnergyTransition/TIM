@@ -1,8 +1,5 @@
 import csv
-import os
-
-from csv_conversion import time_reformatting, header_handling,\
-    check_amount_of_measurements, outfile_validation
+from csv_conversion import time_reformatting
 
 
 def write_data_to_outfile(row_list, outfile):
@@ -11,8 +8,8 @@ def write_data_to_outfile(row_list, outfile):
         csv_writer.writerows(row_list)
 
 
-def get_first_and_last_datetime(filename):
-    with open(filename, newline='') as csv_file:
+def get_first_and_last_datetime(infile):
+    with open(infile, newline='') as csv_file:
         next(csv_file)
         csv_reader = csv.reader(csv_file, delimiter=',')
         csv_list = list(csv_reader)
@@ -20,14 +17,14 @@ def get_first_and_last_datetime(filename):
             time_reformatting.reformat_time(csv_list[-1][0])
 
 
-def get_measurement_name(infile, i):
+def get_measurement_name(infile, item):
     with open(infile, newline='') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
             first_line = row
             break
 
-    measurement_name = first_line[i] # später i anstelle von 1
+    measurement_name = first_line[item]
 
     return measurement_name
 
