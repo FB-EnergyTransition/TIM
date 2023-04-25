@@ -46,17 +46,10 @@ def convert_row(index, row, start_end_array, infile):
     return row_list
 
 
-def get_number_of_columns(infile):
-    with open(infile, newline='') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        for row in csv_reader:
-            example_row = row
-            break
-    return len(example_row)
+
 
 
 def convert_csv(infile, outfile):
-    get_number_of_columns(infile)
     start_end_array = get_first_and_last_datetime(infile)
     # read and write lines one by one (no saving in memory)
     with open(infile, newline='') as csv_file:
