@@ -20,7 +20,6 @@ def get_bucket():
     In which bucket do you want to upload the data?
     """)
     return input()
-    # add validation method
 
 
 def ask_for_units():

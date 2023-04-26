@@ -1,4 +1,4 @@
-from user_interaction import get_user_input_params
+from user_interaction import get_user_input_params, input_validation
 
 
 def print_options():
@@ -12,15 +12,6 @@ def print_options():
 
 def get_option():
     return input()
-
-
-def validate_option(option):
-    if option == "1" or option == "2":
-        pass
-    else:
-        print_invalid_option()
-        print_options()
-        validate_option(get_option())
 
 
 def print_invalid_option():
@@ -46,12 +37,16 @@ def print_csv_requirements():
 
 
 def execute_option_and_get_args(option):
-    validate_option(option)
-    if option == "1":
-        args = get_user_input_params.ask_for_parameters()
+    args = []
+    if input_validation.validate_option(option):
+        if option == "1":
+            args = get_user_input_params.ask_for_parameters()
+        elif option == "2":
+            print_csv_requirements()
+            print_options()
+            execute_option_and_get_args(get_option())
     else:
-        print_csv_requirements()
+        print_invalid_option()
         print_options()
-        execute_option_and_get_args(get_option())
-        args = []
+        input_validation.validate_option(get_option())
     return args

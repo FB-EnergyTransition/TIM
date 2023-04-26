@@ -41,3 +41,10 @@ def validate_bucket_input(bucket):
         return True
     else:
         return False
+
+
+def validate_option(option):
+    if option == "1" or option == "2":
+        return True
+    else:
+        return False

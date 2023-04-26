@@ -54,3 +54,15 @@ def test_validate_bucket_input_2():
     bucket = 'helloWorld'
     expected_output = False
     assert input_validation.validate_bucket_input(bucket) == expected_output
+
+
+def test_validate_option_1():
+    option = "1"
+    expected_output = True
+    assert input_validation.validate_option(option) == expected_output
+
+
+def test_validate_option_2():
+    option = "3"
+    expected_output = False
+    assert input_validation.validate_option(option) == expected_output
