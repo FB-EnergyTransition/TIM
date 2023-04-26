@@ -1,6 +1,7 @@
 import csv
 
 from input_params import input_params
+from user_interaction import input_validation
 
 
 def get_csv_file():
@@ -9,7 +10,7 @@ def get_csv_file():
     Please put in the absolute path:
     """)
     path = input()
-    if input_params.validate_csv_path(path):
+    if input_validation.validate_input_csv_path(path):
         return path
     else:
         get_csv_file()
@@ -32,23 +33,12 @@ def ask_for_units():
     return input()
 
 
-def validate_unit_input(option):
-    if option == "Y" or option == "N" \
-            or option == "YES" or option == "NO" \
-            or option == "y" or option == "n" \
-            or option == "yes" or option == "no":
-        pass
-    else:
-        print_invalid_answer()
-        validate_unit_input(ask_for_units())
-
-
 def print_invalid_answer():
     print("Invalid option. Please chose Y or N.")
 
 
 def get_units(option, infile):
-    validate_unit_input(option)
+    input_validation.validate_unit_input(option)
     if option == "Y" or option == "YES" or option == "y" or option == "yes":
         unit_s = get_single_unit()
     else:
