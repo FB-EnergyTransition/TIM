@@ -1,4 +1,5 @@
 from os import path
+from influxdb_client import InfluxDBClient
 
 from user_interaction import get_user_input_params
 
@@ -26,5 +27,16 @@ def validate_input_csv_path(csv_path):
     return valid
 
 
-def validate_bucket_input():
-    pass
+def validate_bucket_input(bucket):
+    client = InfluxDBClient(url='http://172.22.108.135:8086',
+                            token='FyHQmuauHLl07gGqwxR_sToKNmCRJSSvXK2ETDSimFFjfwY0zbLFYEFyT7aC-g9gsy1j2_tpOMDC50JSq804WQ==',
+                            org='TIM', debug=True)
+    query = 'buckets() |> filter(fn: (r) => r.name !~ /^_/)' \
+            '|> map(fn: (r) => ({_value: r.name}))'
+    result = client.query_api().query(query)
+    buckets = [bk['_value'] for bk in result[0].records]
+
+    if bucket in buckets:
+        return True
+    else:
+        return False

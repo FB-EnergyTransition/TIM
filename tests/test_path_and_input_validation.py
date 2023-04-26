@@ -8,7 +8,7 @@ def test_check_existing_outfile_1():
     assert outfile_validation.check_existing_outfile(outfile) == expected_result
 
 
-def test_check_existing_outfile_3():
+def test_check_existing_outfile_2():
     outfile = '../resources/test2.csv'
     expected_result = False
     assert outfile_validation.check_existing_outfile(outfile) == expected_result
@@ -42,3 +42,15 @@ def test_invalid_file_type_csv():
     path = '../resources/test.txt'
     expected_output = False
     assert input_validation.validate_input_csv_path(path) == expected_output
+
+
+def test_validate_bucket_input_1():
+    bucket = 'EXAA Data'
+    expected_output = True
+    assert input_validation.validate_bucket_input(bucket) == expected_output
+
+
+def test_validate_bucket_input_2():
+    bucket = 'helloWorld'
+    expected_output = False
+    assert input_validation.validate_bucket_input(bucket) == expected_output

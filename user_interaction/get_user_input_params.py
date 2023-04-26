@@ -72,7 +72,7 @@ def get_multiple_units(infile):
 
 def ask_for_parameters():
     csv_file = get_csv_file()
-    bucket = get_bucket()
+    bucket = input_validation.validate_bucket_input(get_bucket())
     unit_s = get_units(ask_for_units(), csv_file)
 
     return [csv_file, bucket, unit_s]
