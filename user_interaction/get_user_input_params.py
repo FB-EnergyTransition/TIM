@@ -77,7 +77,6 @@ def get_multiple_units(infile):
                   + str(item) + ":")
             unit = input()
             units.append(unit)
-    print(units)
     return units
 
 
