@@ -5,14 +5,16 @@ def test_get_measurement_name_1():
     infile = '../resources/test.csv'
     measurement_number = 1
     expected_result = "Preis EXAA 10:15 Auktion"
-    assert read_write_csv.get_measurement_name(infile, measurement_number) == expected_result
+    assert read_write_csv.get_measurement_name(infile, measurement_number)\
+           == expected_result
 
 
 def test_get_measurement_name_2():
     infile = '../resources/test_loadprofiles.csv'
     measurement_number = 2
     expected_result = "CHR_2"
-    assert read_write_csv.get_measurement_name(infile, measurement_number) == expected_result
+    assert read_write_csv.get_measurement_name(infile, measurement_number)\
+           == expected_result
 
 
 def test_get_number_of_measurements_1():

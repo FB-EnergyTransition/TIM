@@ -1,6 +1,5 @@
 import csv
 
-from input_params import input_params
 from user_interaction import input_validation
 
 

@@ -29,7 +29,8 @@ def validate_input_csv_path(csv_path):
 
 def validate_bucket_input(bucket):
     client = InfluxDBClient(url='http://172.22.108.135:8086',
-                            token='FyHQmuauHLl07gGqwxR_sToKNmCRJSSvXK2ETDSimFFjfwY0zbLFYEFyT7aC-g9gsy1j2_tpOMDC50JSq804WQ==',
+                            token='FyHQmuauHLl07gGqwxR_sToKNmCRJSSvXK2ETDSimF'
+                                  'FjfwY0zbLFYEFyT7aC-g9gsy1j2_tpOMDC50JSq804WQ==',
                             org='TIM', debug=True)
     query = 'buckets() |> filter(fn: (r) => r.name !~ /^_/)' \
             '|> map(fn: (r) => ({_value: r.name}))'
