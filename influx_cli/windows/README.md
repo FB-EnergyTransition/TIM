@@ -10,3 +10,5 @@ Further improvements for automatization:
 1) Ask if bucket exists; if not, create new bucket: https://docs.influxdata.com/influxdb/cloud/reference/cli/influx/bucket/
 
 2) Ask if config file exists; if not, delete/create new one: https://docs.influxdata.com/influxdb/cloud/reference/cli/influx/config/
+
+3) add user inputs for all methos
