@@ -1,15 +1,14 @@
 import csv
-
-from input_params import input_params
+from user_interaction import input_validation
 
 
 def get_csv_file():
     print("""
     Which CSV file do you want to upload?
-    Please put in the absolute path:
+    Please put in the absolute or relative path:
     """)
     path = input()
-    if input_params.validate_csv_path(path):
+    if input_validation.validate_input_csv_path(path):
         return path
     else:
         get_csv_file()
@@ -19,8 +18,11 @@ def get_bucket():
     print("""
     In which bucket do you want to upload the data?
     """)
-    return input()
-    # add validation method
+    bucket = input()
+    if input_validation.validate_bucket_input(bucket):
+        return bucket
+    else:
+        get_bucket()
 
 
 def ask_for_units():
@@ -32,27 +34,19 @@ def ask_for_units():
     return input()
 
 
-def validate_unit_input(option):
-    if option == "Y" or option == "N" \
-            or option == "YES" or option == "NO" \
-            or option == "y" or option == "n" \
-            or option == "yes" or option == "no":
-        pass
-    else:
-        print_invalid_answer()
-        validate_unit_input(ask_for_units())
-
-
 def print_invalid_answer():
     print("Invalid option. Please chose Y or N.")
 
 
 def get_units(option, infile):
-    validate_unit_input(option)
-    if option == "Y" or option == "YES" or option == "y" or option == "yes":
-        unit_s = get_single_unit()
+    if input_validation.validate_unit_option(option):
+        if option == "Y" or option == "YES" or option == "y" or option == "yes":
+            unit_s = get_single_unit()
+        else:
+            unit_s = get_multiple_units(infile)
     else:
-        unit_s = get_multiple_units(infile)
+        unit_s = []
+        input_validation.validate_unit_option(ask_for_units())
     return unit_s
 
 
@@ -77,7 +71,6 @@ def get_multiple_units(infile):
                   + str(item) + ":")
             unit = input()
             units.append(unit)
-    print(units)
     return units
 
 

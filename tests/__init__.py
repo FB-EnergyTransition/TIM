@@ -1,1 +1,1 @@
-all = ['test_input_params.py']
+all = []
