@@ -1,12 +1,11 @@
 import csv
-
 from user_interaction import input_validation
 
 
 def get_csv_file():
     print("""
     Which CSV file do you want to upload?
-    Please put in the absolute path:
+    Please put in the absolute or relative path:
     """)
     path = input()
     if input_validation.validate_input_csv_path(path):
@@ -19,7 +18,11 @@ def get_bucket():
     print("""
     In which bucket do you want to upload the data?
     """)
-    return input()
+    bucket = input()
+    if input_validation.validate_bucket_input(bucket):
+        return bucket
+    else:
+        get_bucket()
 
 
 def ask_for_units():
@@ -36,11 +39,14 @@ def print_invalid_answer():
 
 
 def get_units(option, infile):
-    input_validation.validate_unit_input(option)
-    if option == "Y" or option == "YES" or option == "y" or option == "yes":
-        unit_s = get_single_unit()
+    if input_validation.validate_unit_option(option):
+        if option == "Y" or option == "YES" or option == "y" or option == "yes":
+            unit_s = get_single_unit()
+        else:
+            unit_s = get_multiple_units(infile)
     else:
-        unit_s = get_multiple_units(infile)
+        unit_s = []
+        input_validation.validate_unit_option(ask_for_units())
     return unit_s
 
 
@@ -70,7 +76,7 @@ def get_multiple_units(infile):
 
 def ask_for_parameters():
     csv_file = get_csv_file()
-    bucket = input_validation.validate_bucket_input(get_bucket())
+    bucket = get_bucket()
     unit_s = get_units(ask_for_units(), csv_file)
 
     return [csv_file, bucket, unit_s]

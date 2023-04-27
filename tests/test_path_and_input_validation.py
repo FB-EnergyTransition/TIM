@@ -66,3 +66,15 @@ def test_validate_option_2():
     option = "3"
     expected_output = False
     assert input_validation.validate_option(option) == expected_output
+
+
+def test_validate_unit_option_1():
+    option = "yes"
+    expected_result = True
+    assert input_validation.validate_unit_option(option) == expected_result
+
+
+def test_validate_unit_option_2():
+    option = "nope"
+    expected_result = False
+    assert input_validation.validate_unit_option(option) == expected_result
