@@ -1,0 +1,7 @@
+$dir = Join-Path -Path $PSScriptRoot -ChildPath "\influx"
+cd $dir
+
+# ask for bucket
+Write-Output "Please enter bucket"
+$bucket = Read-Host
+. $PSScriptRoot\bucketshandling.ps1 createnewbucket($bucket)
