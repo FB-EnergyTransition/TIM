@@ -6,9 +6,9 @@ function askforconfigfile {
 }
 
 function askforbuckets {
-#    cd 'C:\Program Files\InfluxData\influx\'
-    .\influx.exe bucket list
+    $json = .\influx.exe bucket list --json
+    ($json | ConvertFrom-Json).name
 }
 
-askforconfigfile
-askforbuckets
+#askforconfigfile
+#askforbuckets
