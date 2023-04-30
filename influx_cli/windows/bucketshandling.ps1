@@ -32,4 +32,4 @@ function createnewbucket($bucket) {
     return $bucket
 }
 
-#createnewbucket('Test2')
+createnewbucket($bucket)
