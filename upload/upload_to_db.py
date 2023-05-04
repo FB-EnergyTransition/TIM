@@ -4,7 +4,7 @@ from influxdb_client import InfluxDBClient
 from influxdb_client.client.write_api import SYNCHRONOUS
 
 
-def upload_data(csv_file, bucket):
+def upload_data(csv_file, bucket, measurement):
     client = InfluxDBClient(url='http://172.22.108.135:8086',
                                 token='FyHQmuauHLl07gGqwxR_sToKNmCRJSSvXK2ETDSimF'
                                       'FjfwY0zbLFYEFyT7aC-g9gsy1j2_tpOMDC50JSq804WQ==',
@@ -18,13 +18,13 @@ def upload_data(csv_file, bucket):
         points = []
         for row in reader:
             point = {
-                "measurement": "Strompreis", # user input: please input type of measurement in file
+                "measurement": measurement,
                 "tags": {
-                    "units": str(row["units"])
+                    "units": str(row["_field"])
                 },
                 "time": row["_time"],
                 "fields": {
-                    row["field_name"]: float(row["field_value"])
+                    row["_measurement"]: float(row["_value"])
                 }
             }
             print(point)

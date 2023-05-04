@@ -12,14 +12,15 @@ def main():
 
     args = option_handling.execute_option_and_get_args(option)
     infile = args[0]
-    bucket = args[1]
-    unit_s = args[2]
+    measurement = args[1]
+    bucket = args[2]
+    unit_s = args[3]
 
     csv_conversion_main.convert_csv(infile, unit_s)
     print(bucket)
     converted = './resources/test_Preis MC Auktion_formatted_neu.csv'
 
-    upload_to_db.upload_data(converted, bucket)
+    upload_to_db.upload_data(converted, bucket, measurement)
 
 
 if __name__ == "__main__":

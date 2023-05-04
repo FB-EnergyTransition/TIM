@@ -74,9 +74,17 @@ def get_multiple_units(infile):
     return units
 
 
+def get_measurement():
+    print("""
+    Please type in the type of measurement contained in the CSV file:
+    """)
+    return input()
+
+
 def ask_for_parameters():
     csv_file = get_csv_file()
+    measurement = get_measurement()
     bucket = get_bucket()
     unit_s = get_units(ask_for_units(), csv_file)
 
-    return [csv_file, bucket, unit_s]
+    return [csv_file, measurement, bucket, unit_s]
