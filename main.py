@@ -1,5 +1,3 @@
-import time
-
 from csv_conversion import csv_conversion_main
 from user_interaction import welcome_and_end, option_handling
 from upload import upload_to_db, file_handling
