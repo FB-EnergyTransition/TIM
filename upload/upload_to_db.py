@@ -12,7 +12,7 @@ def upload_data(csv_file, bucket, measurement):
 
     write_api = client.write_api(write_options=SYNCHRONOUS)
 
-    with open(csv_file) as file:
+    with open('./resources/' + csv_file) as file:
         reader = csv.DictReader(file)
 
         points = []

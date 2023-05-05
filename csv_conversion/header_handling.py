@@ -31,7 +31,7 @@ def write_header(outfile):
             csvwriter = csv.writer(file)
             csvwriter.writerow(fourth_line)
 
-    write_first_line()
-    write_second_line()
-    write_third_line()
+    # write_first_line()
+    # write_second_line()
+    # write_third_line()
     write_fourth_line()
