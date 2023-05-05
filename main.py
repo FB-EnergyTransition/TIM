@@ -1,7 +1,7 @@
 import time
 
 from csv_conversion import csv_conversion_main
-from user_interaction import welcome_screen, option_handling
+from user_interaction import welcome_and_end, option_handling
 from upload import upload_to_db, file_handling
 
 
@@ -17,13 +17,13 @@ def main():
     unit_s = args[3]
 
     csv_conversion_main.convert_csv(infile, unit_s)
-
-    time.sleep(3)
     converted_csvs = file_handling.get_all_converted_csvs()
-    # converted = './resources/test_Preis MC Auktion_formatted_neu.csv'
-    print(converted_csvs)
+
     for file in converted_csvs:
         upload_to_db.upload_data(file, bucket, measurement)
+        welcome_and_end.print_successful_upload(file)
+
+    welcome_and_end.print_end_program()
 
 
 
