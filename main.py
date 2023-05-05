@@ -6,7 +6,7 @@ from upload import upload_to_db, file_handling
 
 
 def main():
-    welcome_screen.print_welcome_screen()
+    welcome_and_end.print_welcome_screen()
     option_handling.print_options()
     option = option_handling.get_option()
 
