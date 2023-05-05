@@ -11,3 +11,17 @@ def print_welcome_screen():
     """)
 
 
+def print_successful_upload(file):
+    print("""
+    **********************************************************
+    Data from file """ + file + """has been uploaded successfully.
+    **********************************************************
+    """)
+
+
+def print_end_program():
+    print("""+
+    Ending program...
+    """)
+
+
