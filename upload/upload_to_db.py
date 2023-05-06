@@ -5,6 +5,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 from config import config as cfg
 
+
 def upload_data(csv_file, bucket, measurement):
     client = InfluxDBClient(url=cfg.influxdb["url"],
                             token=cfg.influxdb["token"],

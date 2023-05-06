@@ -4,6 +4,7 @@ from user_interaction import get_user_input_params
 
 from config import config as cfg
 
+
 def validate_unit_option(option):
     if option == "Y" or option == "N" \
             or option == "YES" or option == "NO" \
