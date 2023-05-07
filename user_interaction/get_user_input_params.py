@@ -1,6 +1,6 @@
 import csv
 from user_interaction import input_validation
-import logging
+from logdata import logdata
 
 
 def get_csv_file():
@@ -14,15 +14,12 @@ def get_csv_file():
     else:
         get_csv_file()
 
-# https://realpython.com/python-logging/
-# https://docs.python.org/3/howto/logging.html
-#
 
 def get_bucket():
-    print("""
-    In which bucket do you want to upload the data?
-    """)
     while True:
+        print("""
+        In which bucket do you want to upload the data?
+        """)
         bucket = input()
         try:
             if input_validation.validate_bucket_input(bucket):
@@ -30,15 +27,8 @@ def get_bucket():
             else:
                 get_bucket()
             break
-        # except:
-        #     logging.exception("message")
-        #     print('Connection-Error, please try again')
-        #     continue
         except Exception as e:
-            # logging.error("Exception occurred", exc_info=True)
-            # logging.exception("Exception occurred")
-            logging.error("Exception occurred")
-            print('Connection-Error, please try again')
+            logdata.error_message(e)
             continue
 
 
