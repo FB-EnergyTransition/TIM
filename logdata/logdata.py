@@ -1,25 +1,11 @@
 import datetime
-import os
 import traceback
 
 path = "./logfiles"
 
 now = datetime.datetime.now()
 day = now.strftime("%Y-%m-%d")
-time = now.strftime("%Y-%m-%d %H:%M:%S")
 logfile = "{}/log_{}".format(path, day)
-
-
-def clearfiles():
-    for file in os.listdir(path):
-        if file.startswith("log_"):
-            date = datetime.datetime.strptime(file.replace("log_", "").
-                                              replace(".txt", ""), "%Y-%m-%d")
-            fileday = date.day
-
-            if int(now.strftime("%d")) - 7 >= fileday:
-                os.remove('{}/{}'.format(path, file))
-
 
 def print_to_log(measurement):
     text = open(logfile, "a")
@@ -28,8 +14,9 @@ def print_to_log(measurement):
 
 
 def error_message(e):
+    now = datetime.datetime.now()
+    time = now.strftime("%Y-%m-%d %H:%M:%S")
     logf = open(logfile, "a")
     logf.write("{}: {}\n".format(time, traceback.format_exc()))
-    # logf.write("{}: {}\n".format(time, str(e)))
-    print('\n!!! Error !!! \n {} \n Check logfile in folder ./logfiles for details. \n'
+    print('\n!!! Error !!!\n{}\nCheck logfile in folder ./logfiles for details.\n'
           'Based on the information try again'.format(e))
