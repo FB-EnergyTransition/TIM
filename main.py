@@ -32,17 +32,6 @@ def main():
         except Exception as e:
             logdata.error_message(e)
             continue
-            # print(e)
-            # logdata.error_message(traceback.format_exc())
-
-        # except Exception:
-        #     logdata.error_message(traceback.format_exc())
-
-        # except Exception as e:
-            # if hasattr(e, 'message'):
-            #     logdata.error_message(e.message)
-            # else:
-            #     logdata.error_message(e)
 
 
 if __name__ == "__main__":
