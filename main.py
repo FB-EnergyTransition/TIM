@@ -5,7 +5,6 @@ from logdata import logdata
 
 
 def main():
-    logdata.clearfiles()
     welcome_and_end.print_welcome_screen()
 
     while True:
