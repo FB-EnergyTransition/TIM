@@ -2,6 +2,8 @@ from os import path
 from influxdb_client import InfluxDBClient
 from user_interaction import get_user_input_params
 
+from config import config as cfg
+
 
 def validate_unit_option(option):
     if option == "Y" or option == "N" \
@@ -27,10 +29,10 @@ def validate_input_csv_path(csv_path):
 
 
 def validate_bucket_input(bucket):
-    client = InfluxDBClient(url='http://172.22.108.135:8086',
-                            token='FyHQmuauHLl07gGqwxR_sToKNmCRJSSvXK2ETDSimF'
-                                  'FjfwY0zbLFYEFyT7aC-g9gsy1j2_tpOMDC50JSq804WQ==',
-                            org='TIM')
+    client = InfluxDBClient(url=cfg.influxdb["url"],
+                            token=cfg.influxdb["token"],
+                            org=cfg.influxdb["org"])
+
     query = 'buckets() |> filter(fn: (r) => r.name !~ /^_/)' \
             '|> map(fn: (r) => ({_value: r.name}))'
     result = client.query_api().query(query)

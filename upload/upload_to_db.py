@@ -3,12 +3,13 @@ import csv
 from influxdb_client import InfluxDBClient
 from influxdb_client.client.write_api import SYNCHRONOUS
 
+from config import config as cfg
+
 
 def upload_data(csv_file, bucket, measurement):
-    client = InfluxDBClient(url='http://172.22.108.135:8086',
-                                token='FyHQmuauHLl07gGqwxR_sToKNmCRJSSvXK2ETDSimF'
-                                      'FjfwY0zbLFYEFyT7aC-g9gsy1j2_tpOMDC50JSq804WQ==',
-                                org='TIM')
+    client = InfluxDBClient(url=cfg.influxdb["url"],
+                            token=cfg.influxdb["token"],
+                            org=cfg.influxdb["org"])
 
     write_api = client.write_api(write_options=SYNCHRONOUS)
 

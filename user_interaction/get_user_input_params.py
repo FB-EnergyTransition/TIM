@@ -1,5 +1,6 @@
 import csv
 from user_interaction import input_validation
+from logdata import logdata
 
 
 def get_csv_file():
@@ -15,14 +16,20 @@ def get_csv_file():
 
 
 def get_bucket():
-    print("""
-    In which bucket do you want to upload the data?
-    """)
-    bucket = input()
-    if input_validation.validate_bucket_input(bucket):
-        return bucket
-    else:
-        get_bucket()
+    while True:
+        print("""
+        In which bucket do you want to upload the data?
+        """)
+        bucket = input()
+        try:
+            if input_validation.validate_bucket_input(bucket):
+                return bucket
+            else:
+                get_bucket()
+            break
+        except Exception as e:
+            logdata.error_message(e)
+            continue
 
 
 def ask_for_units():
