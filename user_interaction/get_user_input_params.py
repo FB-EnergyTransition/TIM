@@ -1,6 +1,7 @@
 import csv
 from user_interaction import input_validation
 from logdata import logdata
+from csv_conversion import csv_input_validation
 
 
 def get_csv_file():
@@ -9,7 +10,8 @@ def get_csv_file():
     Please put in the absolute or relative path:
     """)
     path = input()
-    if input_validation.validate_input_csv_path(path):
+    if input_validation.validate_input_csv_path(path)\
+            & csv_input_validation.check_delimiter(path):
         return path
     else:
         get_csv_file()
