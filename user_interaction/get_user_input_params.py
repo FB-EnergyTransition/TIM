@@ -11,7 +11,8 @@ def get_csv_file():
     """)
     path = input()
     if input_validation.validate_input_csv_path(path)\
-            & csv_input_validation.check_delimiter(path):
+            & csv_input_validation.check_delimiter(path)\
+            & csv_input_validation.check_decimal_sign(path):
         return path
     else:
         get_csv_file()
