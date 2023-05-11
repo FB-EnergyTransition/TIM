@@ -26,7 +26,8 @@ def check_input_timeformat(infile):
 
         for row in reader:
             if not re.match(pattern, row[0]):
-                print(f"The value '{row[0]}' does not match the timestamp pattern '{time_pattern}'")
+                print(f"The value '{row[0]}' does not match the timestamp pattern"
+                      f" '{time_pattern}'")
                 return False
         return True
 
