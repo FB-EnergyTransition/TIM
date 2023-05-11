@@ -13,7 +13,8 @@ def get_csv_file():
     # & csv_input_validation.check_decimal_sign(path)
     if input_validation.validate_input_csv_path(path)\
             & csv_input_validation.check_delimiter(path)\
-            & csv_input_validation.check_input_timeformat(path):
+            & csv_input_validation.check_input_timeformat(path)\
+            & csv_input_validation.check_valid_values(path):
 
         return path
     else:
