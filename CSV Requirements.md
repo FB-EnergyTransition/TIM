@@ -9,4 +9,4 @@ The following requirements should apply for all csv files which serve as an inpu
 4. Timestamps have to be in format "dd.MM.YYYY HH:mm:ss".
 5. Value columns start from the second column.
 6. Value columns can only contain valid values.
-7. Headers of the columns should contain the specific names of the measurement field/values.
+7. Headers of the columns should contain the specific names of the measurement fields/values.

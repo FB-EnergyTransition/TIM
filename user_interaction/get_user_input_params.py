@@ -10,9 +10,11 @@ def get_csv_file():
     Please put in the absolute or relative path:
     """)
     path = input()
+    # & csv_input_validation.check_decimal_sign(path)
     if input_validation.validate_input_csv_path(path)\
             & csv_input_validation.check_delimiter(path)\
-            & csv_input_validation.check_decimal_sign(path):
+            & csv_input_validation.check_input_timeformat(path):
+
         return path
     else:
         get_csv_file()
