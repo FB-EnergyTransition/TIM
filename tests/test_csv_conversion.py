@@ -2,7 +2,7 @@ from csv_conversion import csv_conversion_main
 
 
 def test_convert_row_1():
-    infile = '../resources/test.csv'
+    infile = '../resources/test_resources/test.csv'
     row = ['01.01.2018 00:00:00', '-6.00', '', '']
     row_list = [['', '', 0, '2018-01-01T00:15:00.000Z', '2018-01-01T04:00:00.000Z',
                 '2018-01-01T00:00:00.000Z', '-6.00', 'EUR/kWh',
@@ -14,7 +14,7 @@ def test_convert_row_1():
 
 
 def test_convert_row_2():
-    infile = '../resources/test_loadprofiles.csv'
+    infile = '../resources/test_resources/test_loadprofiles.csv'
     row = ['31.12.2015 23:00:00', '0.001497553', '0.001093118', '0.000598087',
            '0.0008511', '0.002365702']
     row_list = [['', '', 0, '2015-12-31T23:00:00.000Z', '2015-12-31T23:15:00.000Z',

@@ -45,36 +45,36 @@ def test_validate_unit_option_invalid_nope():
 
 
 def test_check_delimiter_valid():
-    infile = '../resources/test.csv'
+    infile = '../resources/test_resources/test.csv'
     expected_result = True
     assert csv_input_validation.check_delimiter(infile) == expected_result
 
 
 def test_check_delimiter_invalid():
-    infile = '../resources/test_delimiter_semikolon.csv'
+    infile = '../resources/test_resources/test_delimiter_semikolon.csv'
     expected_result = False
     assert csv_input_validation.check_delimiter(infile) == expected_result
 
 
 def test_check_input_timeformat_valid():
-    infile = '../resources/test.csv'
+    infile = '../resources/test_resources/test.csv'
     expected_result = True
     assert csv_input_validation.check_input_timeformat(infile) == expected_result
 
 
 def test_check_input_timeformat_invalid():
-    infile = '../resources/test_wrong_timeformat.csv'
+    infile = '../resources/test_resources/test_wrong_timeformat.csv'
     expected_result = False
     assert csv_input_validation.check_input_timeformat(infile) == expected_result
 
 
 def test_check_valid_values_valid():
-    infile = '../resources/test.csv'
+    infile = '../resources/test_resources/test.csv'
     expected_result = True
     assert csv_input_validation.check_valid_values(infile) == expected_result
 
 
 def test_check_valid_values_invalid():
-    infile = '../resources/test_invalid_values.csv'
+    infile = '../resources/test_resources/test_invalid_values.csv'
     expected_result = False
     assert csv_input_validation.check_valid_values(infile) == expected_result
