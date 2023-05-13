@@ -43,8 +43,7 @@ def check_valid_values(infile):
             for value in row[1:]:
 
                 try:
-                    float_value = float(value)
-                    print(float_value)
+                    float(value)
 
                 except ValueError:
                     print(f"The value '{value}' is not a float.")
