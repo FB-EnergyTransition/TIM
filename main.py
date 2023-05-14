@@ -19,10 +19,10 @@ def main():
 
             csv_conversion_main.convert_csv(infile, unit_s)
 
-            converted_csvs = file_handling.get_all_converted_csvs()
+            converted_csvs = file_handling.get_all_converted_csvs(infile)
 
             for file in converted_csvs:
-                upload_to_db.upload_data(file, bucket, measurement)
+                upload_to_db.upload_data(infile, file, bucket, measurement)
                 welcome_and_end.print_successful_upload(file)
 
             welcome_and_end.print_end_program()
