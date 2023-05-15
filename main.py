@@ -29,8 +29,10 @@ def main():
                 welcome_and_end.print_successful_upload(file)
             end_time_upload = time.time()-start_time_upload
 
-            print("\n\nThe program needed {} seconds to convert the data".format(round(end_time_conversion, 2)))
-            print("The program needed {} seconds to upload the data\n\n".format(round(end_time_upload, 2)))
+            print("\n\nThe program needed {} seconds to convert the data"
+                  .format(round(end_time_conversion, 2)))
+            print("The program needed {} seconds to upload the data\n\n"
+                  .format(round(end_time_upload, 2)))
             welcome_and_end.print_end_program()
             break
 
