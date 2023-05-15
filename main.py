@@ -2,6 +2,7 @@ from csv_conversion import csv_conversion_main
 from user_interaction import welcome_and_end, option_handling
 from upload import upload_to_db, file_handling
 from logdata import logdata
+import time
 
 
 def main():
@@ -17,14 +18,21 @@ def main():
             bucket = args[2]
             unit_s = args[3]
 
+            start_time_conversion = time.time()
             csv_conversion_main.convert_csv(infile, unit_s)
-
             converted_csvs = file_handling.get_all_converted_csvs(infile)
+            end_time_conversion = time.time()-start_time_conversion
 
+            start_time_upload = time.time()
             for file in converted_csvs:
                 upload_to_db.upload_data(infile, file, bucket, measurement)
                 welcome_and_end.print_successful_upload(file)
+            end_time_upload = time.time()-start_time_upload
 
+            print("\n\nThe program needed {} seconds to convert the data"
+                  .format(round(end_time_conversion, 2)))
+            print("The program needed {} seconds to upload the data\n\n"
+                  .format(round(end_time_upload, 2)))
             welcome_and_end.print_end_program()
             break
 
