@@ -1,22 +1,84 @@
-# Benutzerhandbuch TIM-Skript
+# Benutzerhandbuch TIM
 
 <img src="./pics/Logo.png" width = 300>
 
+## Inhaltsverzeichnis
+1. Einleitung
+2. Setup- und Installationsanweisungen
+3. Beschreibung der Funktionalitäten des Programms
+4. Voraussetzungen für hochzuladende CSV-Dateien
+5. Anleitung zum Ausführen des Programms
+
 ## Einleitung
-Dieses Benutzerhandbuch enthält Informationen über das TIM-Skript, mit dem
-Daten aus CSV-Dateien in die InfluxDB der Forschung Burgenland hochgeladen werden
-können. 
+Dieses Benutzerhandbuch enthält Informationen über das TIM-Skript, einer Kommandozeilen-Applikation, mit der
+Daten aus CSV-Dateien in die InfluxDB der Forschung Burgenland hochgeladen werden können. 
+
+## Setup- und Installationsanweisungen
+Grundsätzlich kann das Programm entweder über das Betriebssystem-eigene Terminal oder über eine Anaconda-Installation
+aufgerufen werden. Letztere ist auf allen Betriebssystemen anwendbar.
+Die Anweisungen in diesem Benutzerhandbuch werden sowohl für eine Anaconda-Installation als auch für eine Ausführung
+auf einem Windows-Betriebssystem über die Eingabeaufforderung (cmd) beschrieben.
+
+### Python-Setup
+Zunächst ist für das Setup eine Python-Installation erforderlich.
+Hier finden Sie die Schritte, um Python entweder lokal auf Ihrem Windows-PC oder mittels Anaconda zu installieren.
+
+#### Python Installation auf Windows
+- Laden Sie auf der [Python-Webseite](https://www.python.org/downloads/) eine Python-Version für Windows herunter.
+Für dieses Programm ist mindestens die Version 3.9 erforderlich.
+- Führen Sie die heruntergeladene .exe-Datei aus.
+- Aktivieren Sie die Option "**Add Python [Versionsnummer] to PATH**", optional auch die andere Option "**Install launcher
+for all users**".
+- Klicken Sie auf "**Install Now**".
+- Nach Beenden der Installation öffnen Sie die Eingabeaufforderung (cmd) und tippen Sie `python` ein.
+Sie sollten die Python-Versionsnummer sehen und die Möglichkeit haben, Python-Befehle direkt auszuführen.
+Wenn dies der Fall ist, war die Installation erfolgreich und Sie können diesen Modus mit der Eingabe `quit()` beenden.
+- Falls die Installation nicht erfolgreich war, überprüfen Sie die erhaltene Fehlermeldung.
+
+#### Anaconda
+- Gehen Sie auf die [Anaconda-Webseite](https://docs.anaconda.com/free/anaconda/install/).
+- Wählen Sie die Installation für Ihr jeweiligen Betriebssystem, z.B. Windows, Linux oder macOS aus.
+- Folgen Sie den Anweisungen des jeweiligen Installationstutorials.
+- Öffnen Sie die mitinstallierte Anaconda Prompt und geben Sie python ein.
+Sie sollten die Python-Versionsnummer sehen und die Möglichkeit haben, Python-Befehle direkt auszuführen.
+Wenn dies der Fall ist, war die Installation erfolgreich und Sie können diesen Modus mit der Eingabe `quit()` beenden.
+- Falls die Installation nicht erfolgreich war, überprüfen Sie die erhaltene Fehlermeldung.
+
+### Einrichten der Verbindung zum Proxmox-Server
+
+#### VPN-Verbindung einrichten
+
+
+
+### Installation Python Packages
+Folgende Python packages müssen installiert werden, um das Programm ausführen zu können.
+Die Installation erfolgt mit `pip install [Packagename]`.
+- influxdb
+- influxdb_client
 
 ## Beschreibung der Funktionalitäten
 Dieses Skript verfügt über 2 Hauptfunktionalitäten:
 1. Konvertieren von CSV-Dateien zu Annotated-CSV-Dateien
 2. Hochladen der Daten aus den konvertierten Dateien in einen Bucket nach Wahl der InfluxDB der Forschung Burgenland
 
+## Voraussetzungen für hochzuladende CSV-Dateien
+Es gibt einige Voraussetzungen für CSV-Dateien, damit Daten daraus in die InfluxDB hochgeladen werden können.
+Die folgenden Anforderungen gelten für alle CSV-Dateien, die als Eingabeparameter für dieses Program verwendet werden:
+
+1. Das Trennzeichen in den CSV-Dateien muss das Komma (",") sein, nicht das Semikolon (";").
+2. Als Dezimaltrennzeichen muss der Punkt ("."), nicht das Komma (",") verwendet werden.
+Ansonsten können die numerischen Werte nicht ermittelt werden.
+3. Zeitstempel müssen und können sich ausschließlich in der ersten Spalte befinden.
+4. Zeitstempel müssen im Format "dd.MM.YYYY HH:mm:ss" vorhanden sein.
+5. Numerische Werte starten ab der zweiten Spalte. Diese Spalten dürfen nur gültige numerische Werte (Integers oder
+Floats) enthalten.
+6. Die Spaltenbezeichnungen sollten die spezifischen Bezeichnungen der in der jeweiligen Spalte enthaltenen Messwerte
+enthalten. Diese dienen in der InfluxDB als "field"-Bezeichnungen.
+
 ## Anleitung zum Ausführen des Programms
-Zum Ausführen des Programms sind die folgenden Setups/Schritte notwendig:
+Zum Ausführen des Programms sind zusätzlich zu den oben beschriebenen Anweisungen die folgenden Setups/Schritte notwendig:
 1. Benötigte Umgebung:
    - mind. Python 3.9
-   - Zusätzlich Python-Package influxdb (pip install influxdb)
 2. Laden Sie eine Releaseversion des TIM-Projekts von https://github.com/FB-EnergyTransition/TIM herunter.
 3. _Optional/Empfohlen:_ Speichern Sie die CSV-Datei, aus der Sie Daten hochladen möchten, im Projektordner "resources" ab.
 4. Öffnen Sie ein Terminal (Anaconda/cmd etc.) und navigieren Sie zum Ordner, in dem das Projekt enthalten ist.
@@ -25,7 +87,7 @@ Zum Ausführen des Programms sind die folgenden Setups/Schritte notwendig:
 
 Anaconda:
 ```
-main.py
+python main.py
 ```
 Windows:
 ```
