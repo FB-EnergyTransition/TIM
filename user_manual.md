@@ -45,21 +45,47 @@ Wenn dies der Fall ist, war die Installation erfolgreich und Sie können diesen 
 - Falls die Installation nicht erfolgreich war, überprüfen Sie die erhaltene Fehlermeldung.
 
 ### Einrichten der Verbindung zum Proxmox-Server
+Sowohl die InfluxDB als auch die Grafana-Installation befinden sich auf einem virtuellen Proxmox-Server
+der Forschung Burgenland. Um mit den Daten aus der InfluxDB arbeiten zu können bzw. Daten hochladen zu können,
+muss vorab eine Verbindung zu diesem Server hergestellt werden.
 
 #### VPN-Verbindung einrichten
+- Installieren Sie einen VPN-Client, wie z.B. [OpenVPN](https://openvpn.net/community-downloads/).
+- Erstellen Sie ein neues VPN-Profil. Die dazu benötigten Dateien befinden sich in [diesem zip-Ordner](https://fhburgenlandat-my.sharepoint.com/:u:/g/personal/2110859020_fh-burgenland_at/EUZN9nb_jmxGr0PP_ChDXGcB4fUma-cF6e4kvUgD05qB6g?e=DQqgIq).
+- Stellen Sie die Verbindung über das neu erstellte Profil her.
 
+#### Verbindung über Client wie PuTTy herstellen
+- Installieren Sie einen SSH-Client, wie z.B. [PuTTY](https://www.putty.org/).
+- Geben Sie die IP-Adresse aus den [Zugangsdaten](https://fhburgenlandat-my.sharepoint.com/:w:/g/personal/2110859020_fh-burgenland_at/ES3bm27Xxo5Kvng_sYOS7FABGoU2h7Xpae6BbvKCAkGtEg?e=dnsajV)
+ein und klicken Sie auf Verbinden.
+- Es öffnet sich ein Terminalfenster. Geben Sie den Benutzernamen und das Passwort aus den [Zugangsdaten](https://fhburgenlandat-my.sharepoint.com/:w:/g/personal/2110859020_fh-burgenland_at/ES3bm27Xxo5Kvng_sYOS7FABGoU2h7Xpae6BbvKCAkGtEg?e=dnsajV) ein.
+- Die Verbindung zum Server wird hergestellt. Falls nicht, überprüfen Sie die erhaltene Fehlermeldung.
 
+#### Desktop-Zugriff über Remote Desktop
+Falls Sie auch einen Zugriff auf das Desktop des Servers wünschen, z.B. für die Visualisierung der Daten in Grafana,
+sind folgende Schritte zu befolgen:
+- Wenn noch nicht vorhanden, installieren Sie einen Desktop-Client Ihrer Wahl. Auf Windows können Sie mit der vorinstallierten
+Remotedesktop-App arbeiten.
+- Erstellen Sie, je nach Client, ein neues Desktop/eine neue Desktopverbindung.
+- Verwenden Sie zur Einrichtung der Verbindung zum Proxmox-Server der Forschung Burgenland dieselben [Zugangsdaten](https://fhburgenlandat-my.sharepoint.com/:w:/g/personal/2110859020_fh-burgenland_at/ES3bm27Xxo5Kvng_sYOS7FABGoU2h7Xpae6BbvKCAkGtEg?e=dnsajV) wie zuvor.
+- Das Passwort zum Zugriff auf das Desktop ist dasselbe wie in den Zugangsdaten.
+- Bei erfolgreichem Zugriff sollten Sie das Desktop einer Ubuntu-Maschine sehen.
 
 ### Installation Python Packages
-Folgende Python packages müssen installiert werden, um das Programm ausführen zu können.
+Die nachfolgenden Python Packages müssen installiert werden, um das Programm ausführen zu können.
 Die Installation erfolgt mit `pip install [Packagename]`.
 - influxdb
 - influxdb_client
 
 ## Beschreibung der Funktionalitäten
 Dieses Skript verfügt über 2 Hauptfunktionalitäten:
-1. Konvertieren von CSV-Dateien zu Annotated-CSV-Dateien
-2. Hochladen der Daten aus den konvertierten Dateien in einen Bucket nach Wahl der InfluxDB der Forschung Burgenland
+
+### Konvertieren von CSV-Dateien zu Annotated-CSV-Dateien
+Um die gewünschten Daten aus den csv-Dateien hochladen zu können, müssen diese zunächst aufbereitet und in sogenannte annotated csvs konvertiert werden.
+So wird sichergestellt, dass beim Upload in die InfluxDB alle entsprechenden Daten, Parameter und Metadaten korrekt gesetzt sind bzw. ausgelesen werden.
+
+### Hochladen der Daten aus den konvertierten Dateien in einen Bucket nach Wahl der InfluxDB der Forschung Burgenland
+
 
 ## Voraussetzungen für hochzuladende CSV-Dateien
 Es gibt einige Voraussetzungen für CSV-Dateien, damit Daten daraus in die InfluxDB hochgeladen werden können.
