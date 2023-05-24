@@ -54,9 +54,9 @@ def convert_csv(infile, units):
             header_handling.write_header(outfile)
 
             # read and write lines one by one (no saving in memory)
-            print("Conversion of {} starts: ".format(infile))
+
             for index, row in enumerate(csv_reader):
                 row_list = convert_row(index, row, start_end_array, infile, item, units)
                 read_write_csv.write_data_to_outfile(row_list, outfile)
-                print("Row {} converted".format(index))
+
 

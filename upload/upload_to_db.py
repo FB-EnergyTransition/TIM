@@ -29,7 +29,7 @@ def upload_data(infile, csv_file, bucket, measurement):
                     row["_measurement"]: float(row["_value"])
                 }
             }
-            print("{} uploaded".format(str(point)))
+
             points.append(point)
 
         write_api.write(bucket=bucket, record=points)

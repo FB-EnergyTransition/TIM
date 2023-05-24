@@ -20,7 +20,7 @@ def print_successful_upload(file):
 
 
 def print_end_program():
-    print("""+
+    print("""
     Ending program...
     """)
 
