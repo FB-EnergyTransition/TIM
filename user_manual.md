@@ -81,11 +81,13 @@ Die Installation erfolgt mit `pip install [Packagename]`.
 Dieses Skript verfügt über 2 Hauptfunktionalitäten:
 
 ### Konvertieren von CSV-Dateien zu Annotated-CSV-Dateien
-Um die gewünschten Daten aus den csv-Dateien hochladen zu können, müssen diese zunächst aufbereitet und in sogenannte annotated csvs konvertiert werden.
+Um die gewünschten Daten aus den CSV-Dateien hochladen zu können, müssen diese zunächst aufbereitet und in sogenannte annotated csvs konvertiert werden.
 So wird sichergestellt, dass beim Upload in die InfluxDB alle entsprechenden Daten, Parameter und Metadaten korrekt gesetzt sind bzw. ausgelesen werden.
 
 ### Hochladen der Daten aus den konvertierten Dateien in einen Bucket nach Wahl der InfluxDB der Forschung Burgenland
-
+Mithilfe der Eingabe bestimmter Parameter können die ausgelesenen Daten im Anschluss in einen Bucket nach Wahl in die InfluxDB
+der Forschung Burgenland hochgeladen werden. Für die Eingabe der noch fehlenden Parameter stellt das Programm eine
+Benutzeroberfläche bereit, in der der User nach den Parametern gefragt wird.
 
 ## Voraussetzungen für hochzuladende CSV-Dateien
 Es gibt einige Voraussetzungen für CSV-Dateien, damit Daten daraus in die InfluxDB hochgeladen werden können.
