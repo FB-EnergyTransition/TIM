@@ -50,12 +50,12 @@ der Forschung Burgenland. Um mit den Daten aus der InfluxDB arbeiten zu können 
 muss vorab eine Verbindung zu diesem Server hergestellt werden.
 
 #### VPN-Verbindung einrichten
-- Installieren Sie einen VPN-Client, wie z.B. [OpenVPN](https://openvpn.net/community-downloads/).
+- Falls nicht vorhanden, installieren Sie einen VPN-Client, wie z.B. [OpenVPN](https://openvpn.net/community-downloads/).
 - Erstellen Sie ein neues VPN-Profil. Die dazu benötigten Dateien befinden sich in [diesem zip-Ordner](https://fhburgenlandat-my.sharepoint.com/:u:/g/personal/2110859020_fh-burgenland_at/EUZN9nb_jmxGr0PP_ChDXGcB4fUma-cF6e4kvUgD05qB6g?e=DQqgIq).
 - Stellen Sie die Verbindung über das neu erstellte Profil her.
 
 #### Verbindung über Client wie PuTTy herstellen
-- Installieren Sie einen SSH-Client, wie z.B. [PuTTY](https://www.putty.org/).
+- Falls nicht vorhanden, installieren Sie einen SSH-Client, wie z.B. [PuTTY](https://www.putty.org/).
 - Geben Sie die IP-Adresse aus den [Zugangsdaten](https://fhburgenlandat-my.sharepoint.com/:w:/g/personal/2110859020_fh-burgenland_at/ES3bm27Xxo5Kvng_sYOS7FABGoU2h7Xpae6BbvKCAkGtEg?e=dnsajV)
 ein und klicken Sie auf Verbinden.
 - Es öffnet sich ein Terminalfenster. Geben Sie den Benutzernamen und das Passwort aus den [Zugangsdaten](https://fhburgenlandat-my.sharepoint.com/:w:/g/personal/2110859020_fh-burgenland_at/ES3bm27Xxo5Kvng_sYOS7FABGoU2h7Xpae6BbvKCAkGtEg?e=dnsajV) ein.
