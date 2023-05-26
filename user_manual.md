@@ -8,6 +8,7 @@
 3. Beschreibung der Funktionalitäten des Programms
 4. Voraussetzungen für hochzuladende CSV-Dateien
 5. Anleitung zum Ausführen des Programms
+6. Visualisierung der Daten in Grafana
 
 ## Einleitung
 Dieses Benutzerhandbuch enthält Informationen über das TIM-Skript, einer Kommandozeilen-Applikation, mit der
@@ -62,7 +63,7 @@ ein und klicken Sie auf Verbinden.
 - Die Verbindung zum Server wird hergestellt. Falls nicht, überprüfen Sie die erhaltene Fehlermeldung.
 
 #### Desktop-Zugriff über Remote Desktop
-Falls Sie auch einen Zugriff auf das Desktop des Servers wünschen, z.B. für die Visualisierung der Daten in Grafana,
+Falls Sie auch einen Zugriff auf das Desktop des Servers wünschen, z.B. für die Visualisierung der Daten in der InfluxDB,
 sind folgende Schritte zu befolgen:
 - Wenn noch nicht vorhanden, installieren Sie einen Desktop-Client Ihrer Wahl. Auf Windows können Sie mit der vorinstallierten
 Remotedesktop-App arbeiten.
@@ -78,7 +79,7 @@ Die Installation erfolgt mit `pip install [Packagename]`.
 - influxdb_client
 
 ## Beschreibung der Funktionalitäten
-Dieses Skript verfügt über 2 Hauptfunktionalitäten:
+Dieses Skript verfügt über folgende Hauptfunktionalitäten:
 
 ### Konvertieren von CSV-Dateien zu Annotated-CSV-Dateien
 Um die gewünschten Daten aus den CSV-Dateien hochladen zu können, müssen diese zunächst aufbereitet und in sogenannte annotated csvs konvertiert werden.
@@ -148,3 +149,10 @@ oder die Einheit für jede Wertespalte wird einzeln abgefragt.
 
 12. Es folgt der Datenupload. Bei erfolgreichem Upload erhalten Sie eine Bestätigung,
 dass die Daten in die InfluxDB hochgeladen wurden.
+
+
+## Visualisierung der Daten in Grafana
+Im Zuge des TIM-Projekts wurde ebenfalls eine Verbindung der InfluxDB zu Grafana eingerichtet, um die Visualisierung der Daten zu ermöglichen.
+Nach erfolgreicher Herstellung der Verbindung zur InfluxDB können die Daten darin folgendermaßen visualisiert werden:
+1. Öffnen des Webseitenlinks "Grafana" in den [Zugangsdaten](https://fhburgenlandat-my.sharepoint.com/:w:/g/personal/2110859020_fh-burgenland_at/ES3bm27Xxo5Kvng_sYOS7FABGoU2h7Xpae6BbvKCAkGtEg?e=9oH7x7).
+2. Die Logindaten finden SIe ebenfalls im Dokument Zugangsdaten.
