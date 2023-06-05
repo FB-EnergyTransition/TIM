@@ -131,7 +131,7 @@ Falls sich die Datei im "resources"-Ordner befindet, geben Sie Folgendes ein:
 ```
 Es folgt eine Überprüfung, ob die angegebene Datei existiert und für den Upload entsprechend der CSV-Voraussetzungen geeignet ist.
 
-8. Bei Eingabe eines gültigen Pfades folgt die Frage, welche Messungen in dieser Datei enthalten sind.
+8. Bei Eingabe eines gültigen Pfades folgt die Frage, welche Art von Messungen in dieser Datei enthalten sind.
 Geben Sie den Namen/Überbegriff der Messung ein, z.B. "Strompreis", "Windstärke" etc.
 Diese Eingabe wird später als **measurement** in der InfluxDB angezeigt.
 
@@ -155,4 +155,4 @@ dass die Daten in die InfluxDB hochgeladen wurden.
 Im Zuge des TIM-Projekts wurde ebenfalls eine Verbindung der InfluxDB zu Grafana eingerichtet, um die Visualisierung der Daten zu ermöglichen.
 Nach erfolgreicher Herstellung der Verbindung zur InfluxDB können die Daten darin folgendermaßen visualisiert werden:
 1. Öffnen des Webseitenlinks "Grafana" in den [Zugangsdaten](https://fhburgenlandat-my.sharepoint.com/:w:/g/personal/2110859020_fh-burgenland_at/ES3bm27Xxo5Kvng_sYOS7FABGoU2h7Xpae6BbvKCAkGtEg?e=9oH7x7).
-2. Die Logindaten finden SIe ebenfalls im Dokument Zugangsdaten.
+2. Die Logindaten finden Sie ebenfalls im Dokument Zugangsdaten.
