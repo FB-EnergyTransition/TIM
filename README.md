@@ -1,10 +1,9 @@
-# TIM
+# TIM - Readme
 
-## Umzusetzende Anforderungen:
-- Methode zur Umwandlung von csv in annotated csvs
-- Methode zum Upload der annotated csvs in die DB
-- Aufruf über Command Line mit Inputparametern
-- Inputparameter: Pfad zur umzuwandelnden csv Datei, Einheit der Werte in csv Datei, Bucket in den Upload erfolgen soll
-- Definition Voraussetzungen, damit csv-Dateien zu annotated csvs umgewandelt werden können
-- Angabe Einheit: Abfrage, ob in allen Spalten dieselbe Einheit ist - wenn nein, Einheit für jede Wertespalte abfragen
-- 
+Das Skript in diesem Repository entstand im Rahmen eines Praxisprojekts einer Studentengruppe der Fachhochschule Burgenland in Zusammenarbeit mit der Forschung Burgenland GmbH.
+
+Ziel des Praxisprojekts war die Einrichtung einer Zeitreihendatenbank (mittels InfluxDB), die Entwicklung eines Python Skripts zum Upload von Daten aus CSV-Dateien in die Datenbank sowie die Einrichtung von Grafana inkl. einer Verknüpfung zu der Datenbank, um die Daten auch visualisieren zu können.
+
+Die InfluxDB sowie Grafana laufen in Docker Containern auf einem Proxmox-Server, der von der Forschung Burgenland für dieses Projekt bereitgestellt wurde. Für den Zugriff darauf ist eine VPN-Verbindung zu diesem Server erforderlich.
+
+Alle Setup- und Installationsanweisungen sowie detaillierte Beschreibungen der Funktionen und Anwendungsmöglichkeiten des Programms befinden sich im [Benutzerhandbuch](user_manual.md).
