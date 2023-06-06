@@ -2,7 +2,7 @@ import csv
 import os
 
 import csv_conversion.time_reformatting
-from csv_conversion import read_write_csv, time_reformatting,\
+from csv_conversion import read_write_csv,\
     check_amount_of_measurements, outfile_validation, header_handling
 
 
@@ -32,8 +32,9 @@ def convert_csv(infile, units):
     start_end_array = read_write_csv.get_first_and_last_datetime(infile)
 
     # check if there is more than 1 measurement in file
-    if check_amount_of_measurements.check_if_splitting_is_needed(infile):
-        i = check_amount_of_measurements.get_number_of_measurements(infile)
+    mh = csv_conversion.check_amount_of_measurements.MeasurementHandler(infile)
+    if mh.check_if_splitting_is_needed():
+        i = mh.get_number_of_measurements()
     else:
         i = 1
 
