@@ -1,10 +1,12 @@
+import time
+
+import upload.upload_to_db
 import upload.file_handling
+
 import user_interaction.welcome_and_end
 from csv_conversion import csv_conversion_main
-from user_interaction import option_handling
-from upload import upload_to_db
 from logdata import logdata
-import time
+from user_interaction import option_handling
 
 
 def main():
@@ -32,7 +34,8 @@ def main():
             start_time_upload = time.time()
 
             for file in converted_csvs:
-                uploader = upload.upload_to_db.Uploader(infile, file, bucket, measurement)
+                uploader = upload.upload_to_db.\
+                    Uploader(infile, file, bucket, measurement)
                 uploader.upload_data()
                 pr.print_successful_upload(file)
             end_time_upload = time.time()-start_time_upload

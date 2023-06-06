@@ -15,7 +15,6 @@ class Printer:
     
         """)
 
-
     def print_successful_upload(self, file):
         self.file = file
         print("""
