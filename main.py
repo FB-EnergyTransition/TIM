@@ -1,6 +1,7 @@
+import upload.file_handling
 from csv_conversion import csv_conversion_main
 from user_interaction import welcome_and_end, option_handling
-from upload import upload_to_db, file_handling
+from upload import upload_to_db
 from logdata import logdata
 import time
 
@@ -20,7 +21,9 @@ def main():
 
             start_time_conversion = time.time()
             csv_conversion_main.convert_csv(infile, unit_s)
-            converted_csvs = file_handling.get_all_converted_csvs(infile)
+
+            fh = upload.file_handling.FileHandler()
+            converted_csvs = fh.get_all_converted_csvs(infile)
             end_time_conversion = time.time()-start_time_conversion
 
             start_time_upload = time.time()
