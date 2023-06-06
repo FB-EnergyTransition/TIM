@@ -46,10 +46,11 @@ def convert_csv(infile, units):
             csv_reader = csv.reader(csv_file, delimiter=',')
 
             # validate outfile name and check if it already exists
+            ov = csv_conversion.outfile_validation.OutfileValidator()
             measurement_name = read_write_csv.get_measurement_name(infile, item)
-            measurement = outfile_validation.check_measurement_name(measurement_name)
+            measurement = ov.check_measurement_name(measurement_name)
             outfile = infile.replace('.csv', '_' + measurement + '_formatted.csv')
-            if outfile_validation.check_existing_outfile(outfile):
+            if ov.check_existing_outfile(outfile):
                 os.remove(outfile)
 
             # write headers

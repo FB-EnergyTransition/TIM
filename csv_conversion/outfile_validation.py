@@ -1,16 +1,23 @@
 import os
 
 
-def check_existing_outfile(outfile):
-    if os.path.exists(outfile):
-        return True
-    else:
-        return False
+class OutfileValidator:
 
+    def __init__(self):
+        self.outfile = ""
+        self.measurement = ""
 
-def check_measurement_name(measurement):
-    invalid = '<>:"/\\\|?*'
-    for char in invalid:
-        measurement = measurement.replace(char, '')
+    def check_existing_outfile(self, outfile):
+        self.outfile = outfile
+        if os.path.exists(self.outfile):
+            return True
+        else:
+            return False
 
-    return measurement
+    def check_measurement_name(self, measurement):
+        self.measurement = measurement
+        invalid = '<>:"/\\\|?*'
+        for char in invalid:
+            self.measurement = self.measurement.replace(char, '')
+
+        return self.measurement
