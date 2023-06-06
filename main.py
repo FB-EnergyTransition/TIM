@@ -1,5 +1,6 @@
 import time
 
+import csv_conversion.csv_conversion_main
 import upload.upload_to_db
 import upload.file_handling
 import user_interaction.get_user_input_params
@@ -26,7 +27,8 @@ def main():
             #unit_s = args[3]
 
             start_time_conversion = time.time()
-            csv_conversion_main.convert_csv(params.infile, params.units)
+            csvc = csv_conversion.csv_conversion_main.CsvConverter(params.infile, params.units)
+            csvc.convert_csv()
 
             fh = upload.file_handling.FileHandler(params.infile)
 
