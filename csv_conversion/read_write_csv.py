@@ -1,4 +1,6 @@
 import csv
+
+import csv_conversion.time_reformatting
 from csv_conversion import time_reformatting
 
 
@@ -13,8 +15,14 @@ def get_first_and_last_datetime(infile):
         next(csv_file)
         csv_reader = csv.reader(csv_file, delimiter=',')
         csv_list = list(csv_reader)
-        return time_reformatting.reformat_time(csv_list[0][0]), \
-            time_reformatting.reformat_time(csv_list[-1][0])
+        first_last_list = []
+        tf1 = csv_conversion.time_reformatting.TimeFormatter(csv_list[0][0])
+        first = tf1.reformat_time()
+        first_last_list.append(first)
+        tf2 = csv_conversion.time_reformatting.TimeFormatter(csv_list[-1][0])
+        last = tf2.reformat_time()
+        first_last_list.append(last)
+        return first, last
 
 
 def get_measurement_name(infile, item):

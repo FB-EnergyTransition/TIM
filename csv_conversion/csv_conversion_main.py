@@ -1,12 +1,14 @@
 import csv
 import os
 
+import csv_conversion.time_reformatting
 from csv_conversion import read_write_csv, time_reformatting,\
     check_amount_of_measurements, outfile_validation, header_handling
 
 
 def convert_row(index, row, start_end_array, infile, item, units):
-    time = time_reformatting.reformat_time(row[0])
+    tf = csv_conversion.time_reformatting.TimeFormatter(row[0])
+    time = tf.reformat_time()
     value = row[item]
     start_time = start_end_array[0]  # read first timestamp
     stop_time = start_end_array[1]  # read last timestamp
