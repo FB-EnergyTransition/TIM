@@ -1,13 +1,15 @@
 import upload.file_handling
+import user_interaction.welcome_and_end
 from csv_conversion import csv_conversion_main
-from user_interaction import welcome_and_end, option_handling
+from user_interaction import option_handling
 from upload import upload_to_db
 from logdata import logdata
 import time
 
 
 def main():
-    welcome_and_end.print_welcome_screen()
+    pr = user_interaction.welcome_and_end.Printer()
+    pr.print_welcome_screen()
 
     while True:
         try:
@@ -32,14 +34,14 @@ def main():
             for file in converted_csvs:
                 uploader = upload.upload_to_db.Uploader(infile, file, bucket, measurement)
                 uploader.upload_data()
-                welcome_and_end.print_successful_upload(file)
+                pr.print_successful_upload(file)
             end_time_upload = time.time()-start_time_upload
 
             print("\n\nThe program needed {} seconds to convert the data"
                   .format(round(end_time_conversion, 2)))
             print("The program needed {} seconds to upload the data\n\n"
                   .format(round(end_time_upload, 2)))
-            welcome_and_end.print_end_program()
+            pr.print_end_program()
             break
 
         except Exception as e:
