@@ -1,5 +1,5 @@
+import csv_conversion.csv_input_validation
 import user_interaction.input_validation
-from user_interaction import input_validation
 from csv_conversion import csv_input_validation
 
 
@@ -55,34 +55,40 @@ def test_validate_unit_option_invalid_nope():
 def test_check_delimiter_valid():
     infile = '../resources/test_resources/test.csv'
     expected_result = True
-    assert csv_input_validation.check_delimiter(infile) == expected_result
+    civ = csv_conversion.csv_input_validation.CsvInputValidator(infile)
+    assert civ.check_delimiter() == expected_result
 
 
 def test_check_delimiter_invalid():
     infile = '../resources/test_resources/test_delimiter_semikolon.csv'
     expected_result = False
-    assert csv_input_validation.check_delimiter(infile) == expected_result
+    civ = csv_conversion.csv_input_validation.CsvInputValidator(infile)
+    assert civ.check_delimiter() == expected_result
 
 
 def test_check_input_timeformat_valid():
     infile = '../resources/test_resources/test.csv'
     expected_result = True
-    assert csv_input_validation.check_input_timeformat(infile) == expected_result
+    civ = csv_conversion.csv_input_validation.CsvInputValidator(infile)
+    assert civ.check_input_timeformat() == expected_result
 
 
 def test_check_input_timeformat_invalid():
     infile = '../resources/test_resources/test_wrong_timeformat.csv'
     expected_result = False
-    assert csv_input_validation.check_input_timeformat(infile) == expected_result
+    civ = csv_conversion.csv_input_validation.CsvInputValidator(infile)
+    assert civ.check_input_timeformat() == expected_result
 
 
 def test_check_valid_values_valid():
     infile = '../resources/test_resources/test.csv'
     expected_result = True
-    assert csv_input_validation.check_valid_values(infile) == expected_result
+    civ = csv_conversion.csv_input_validation.CsvInputValidator(infile)
+    assert civ.check_valid_values() == expected_result
 
 
 def test_check_valid_values_invalid():
     infile = '../resources/test_resources/test_invalid_values.csv'
     expected_result = False
-    assert csv_input_validation.check_valid_values(infile) == expected_result
+    civ = csv_conversion.csv_input_validation.CsvInputValidator(infile)
+    assert civ.check_valid_values() == expected_result

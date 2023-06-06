@@ -1,7 +1,6 @@
 import csv
 
 import csv_conversion.time_reformatting
-from csv_conversion import time_reformatting
 
 
 def write_data_to_outfile(row_list, outfile):

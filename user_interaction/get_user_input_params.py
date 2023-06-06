@@ -1,9 +1,8 @@
 import csv
 
+import csv_conversion.csv_input_validation
 import user_interaction.input_validation
-from user_interaction import input_validation
 from logdata import logdata
-from csv_conversion import csv_input_validation
 
 
 class InputParams:
@@ -23,10 +22,12 @@ class InputParams:
         """)
         path = input()
 
+        civ = csv_conversion.csv_input_validation.CsvInputValidator(path)
+
         if self.iv.validate_input_csv_path(path)\
-                & csv_input_validation.check_delimiter(path)\
-                & csv_input_validation.check_input_timeformat(path)\
-                & csv_input_validation.check_valid_values(path):
+                & civ.check_delimiter()\
+                & civ.check_input_timeformat()\
+                & civ.check_valid_values():
             self.infile = path
         else:
             self.get_csv_file()
