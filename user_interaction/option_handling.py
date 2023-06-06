@@ -6,17 +6,18 @@ pr = user_interaction.welcome_and_end.Printer()
 
 class OptionHandler:
 
-    def __init__(self):
-        pass
+    def __init__(self, params):
+        self.iv = user_interaction.input_validation.InputValidator()
+        self.params = params
 
     def get_option(self):
         return input()
 
     def execute_option_and_get_args(self, option):
         args = []
-        if input_validation.validate_option(option):
+        if self.iv.validate_option(option):
             if option == "1":
-                args = get_user_input_params.ask_for_parameters()
+                self.params.get_parameters()
             elif option == "2":
                 pr.print_csv_requirements()
                 pr.print_options()
@@ -24,5 +25,5 @@ class OptionHandler:
         else:
             pr.print_invalid_option()
             pr.print_options()
-            input_validation.validate_option(self.get_option())
+            self.iv.validate_option(self.get_option())
         return args

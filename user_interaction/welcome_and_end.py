@@ -57,4 +57,7 @@ class Printer:
         **********************************************************
         """)
 
+    def print_invalid_answer(self):
+        print("Invalid option. Please chose Y or N.")
+
 

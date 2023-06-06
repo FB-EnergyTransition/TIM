@@ -1,103 +1,103 @@
 import csv
+
+import user_interaction.input_validation
 from user_interaction import input_validation
 from logdata import logdata
 from csv_conversion import csv_input_validation
 
 
-def get_csv_file():
-    print("""
-    Which CSV file do you want to upload?
-    Please put in the absolute or relative path:
-    """)
-    path = input()
+class InputParams:
 
-    if input_validation.validate_input_csv_path(path)\
-            & csv_input_validation.check_delimiter(path)\
-            & csv_input_validation.check_input_timeformat(path)\
-            & csv_input_validation.check_valid_values(path):
+    def __init__(self):
+        self.iv = user_interaction.input_validation.InputValidator()
+        self.bucket = ""
+        self.infile = ""
+        self.units = None
+        self.measurement = ""
+        self.unit_option = ""
 
-        return path
-    else:
-        get_csv_file()
-
-
-def get_bucket():
-    while True:
+    def get_csv_file(self):
         print("""
-        In which bucket do you want to upload the data?
+        Which CSV file do you want to upload?
+        Please put in the absolute or relative path:
         """)
-        bucket = input()
-        try:
-            if input_validation.validate_bucket_input(bucket):
-                return bucket
-            else:
-                get_bucket()
-            break
-        except Exception as e:
-            logdata.error_message(e)
-            continue
+        path = input()
 
-
-def ask_for_units():
-    print("""
-    Are all measurements in the CSV file of the same unit?
-    Y - Yes
-    N - No
-    """)
-    return input()
-
-
-def print_invalid_answer():
-    print("Invalid option. Please chose Y or N.")
-
-
-def get_units(option, infile):
-    if input_validation.validate_unit_option(option):
-        if option == "Y" or option == "YES" or option == "y" or option == "yes":
-            unit_s = get_single_unit()
+        if self.iv.validate_input_csv_path(path)\
+                & csv_input_validation.check_delimiter(path)\
+                & csv_input_validation.check_input_timeformat(path)\
+                & csv_input_validation.check_valid_values(path):
+            self.infile = path
         else:
-            unit_s = get_multiple_units(infile)
-    else:
-        unit_s = []
-        input_validation.validate_unit_option(ask_for_units())
-    return unit_s
+            self.get_csv_file()
 
+    def get_bucket(self):
+        while True:
+            print("""
+            In which bucket do you want to upload the data?
+            """)
+            bucket = input()
+            try:
+                if self.iv.validate_bucket_input(bucket):
+                    self.bucket = bucket
+                else:
+                    self.get_bucket()
+                break
+            except Exception as e:
+                logdata.error_message(e)
+                continue
 
-def get_single_unit():
-    print("""
-    Please type in the unit of all measurements in the file:
-    """)
-    return input()
+    def get_unit_option(self):
+        print("""
+        Are all measurements in the CSV file of the same unit?
+        Y - Yes
+        N - No
+        """)
+        return input()
 
+    def get_units(self):
+        self.unit_option = self.get_unit_option()
+        if self.iv.validate_unit_option(self.unit_option):
+            if self.unit_option == "Y" or self.unit_option == "YES"\
+                    or self.unit_option == "y" or self.unit_option == "yes":
+                unit_s = self.get_single_unit()
+            else:
+                unit_s = self.get_multiple_units()
+        else:
+            unit_s = []
+            self.iv.validate_unit_option(self.get_unit_option())
+        self.units = unit_s
 
-def get_multiple_units(infile):
-    units = []
-    with open(infile, newline='') as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        header = []
-        for line in csv_reader:
-            header.append(line)
-            break
-        header[0].pop(0)
-        for item in header[0]:
-            print("Please type the unit for the measurement "
-                  + str(item) + ":")
-            unit = input()
-            units.append(unit)
-    return units
+    def get_single_unit(self):
+        print("""
+        Please type in the unit of all measurements in the file:
+        """)
+        return input()
 
+    def get_multiple_units(self):
+        units = []
+        with open(self.infile, newline='') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            header = []
+            for line in csv_reader:
+                header.append(line)
+                break
+            header[0].pop(0)
+            for item in header[0]:
+                print("Please type the unit for the measurement "
+                      + str(item) + ":")
+                unit = input()
+                units.append(unit)
+        return units
 
-def get_measurement():
-    print("""
-    Please type in the type of measurement contained in the CSV file:
-    """)
-    return input()
+    def get_measurement(self):
+        print("""
+        Please type in the type of measurement contained in the CSV file:
+        """)
+        self.measurement = input()
 
-
-def ask_for_parameters():
-    csv_file = get_csv_file()
-    measurement = get_measurement()
-    bucket = get_bucket()
-    unit_s = get_units(ask_for_units(), csv_file)
-
-    return [csv_file, measurement, bucket, unit_s]
+    def get_parameters(self):
+        self.get_csv_file()
+        self.get_measurement()
+        self.get_bucket()
+        self.get_units()
