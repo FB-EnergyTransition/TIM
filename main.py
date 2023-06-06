@@ -22,13 +22,16 @@ def main():
             start_time_conversion = time.time()
             csv_conversion_main.convert_csv(infile, unit_s)
 
-            fh = upload.file_handling.FileHandler()
-            converted_csvs = fh.get_all_converted_csvs(infile)
+            fh = upload.file_handling.FileHandler(infile)
+
+            converted_csvs = fh.get_all_converted_csvs()
             end_time_conversion = time.time()-start_time_conversion
 
             start_time_upload = time.time()
+
             for file in converted_csvs:
-                upload_to_db.upload_data(infile, file, bucket, measurement)
+                uploader = upload.upload_to_db.Uploader(infile, file, bucket, measurement)
+                uploader.upload_data()
                 welcome_and_end.print_successful_upload(file)
             end_time_upload = time.time()-start_time_upload
 
