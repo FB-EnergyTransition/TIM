@@ -54,7 +54,8 @@ def convert_csv(infile, units):
                 os.remove(outfile)
 
             # write headers
-            header_handling.write_header(outfile)
+            hh = csv_conversion.header_handling.HeaderHandler(outfile)
+            hh.write_header()
 
             # read and write lines one by one (no saving in memory)
 
