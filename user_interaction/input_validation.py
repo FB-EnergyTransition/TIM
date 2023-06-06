@@ -1,9 +1,6 @@
 from os import path
 from influxdb_client import InfluxDBClient
-
 import user_interaction.welcome_and_end
-from user_interaction import get_user_input_params
-
 from config import config as cfg
 
 

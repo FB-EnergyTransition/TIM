@@ -1,3 +1,4 @@
+import user_interaction.input_validation
 from user_interaction import input_validation
 from csv_conversion import csv_input_validation
 
@@ -5,43 +6,50 @@ from csv_conversion import csv_input_validation
 def test_validate_bucket_input_valid():
     bucket = 'EXAA Data'
     expected_output = True
-    assert input_validation.validate_bucket_input(bucket) == expected_output
+    iv = user_interaction.input_validation.InputValidator()
+    assert iv.validate_bucket_input(bucket) == expected_output
 
 
 def test_validate_bucket_input_invalid():
     bucket = 'helloWorld'
     expected_output = False
-    assert input_validation.validate_bucket_input(bucket) == expected_output
+    iv = user_interaction.input_validation.InputValidator()
+    assert iv.validate_bucket_input(bucket) == expected_output
 
 
 def test_validate_option_valid():
     option = "1"
     expected_output = True
-    assert input_validation.validate_option(option) == expected_output
+    iv = user_interaction.input_validation.InputValidator()
+    assert iv.validate_option(option) == expected_output
 
 
 def test_validate_option_invalid_3():
     option = "3"
     expected_output = False
-    assert input_validation.validate_option(option) == expected_output
+    iv = user_interaction.input_validation.InputValidator()
+    assert iv.validate_option(option) == expected_output
 
 
 def test_validate_option_invalid_exklamation_mark():
     option = "!"
     expected_output = False
-    assert input_validation.validate_option(option) == expected_output
+    iv = user_interaction.input_validation.InputValidator()
+    assert iv.validate_option(option) == expected_output
 
 
 def test_validate_unit_option_valid_yes():
     option = "yes"
     expected_result = True
-    assert input_validation.validate_unit_option(option) == expected_result
+    iv = user_interaction.input_validation.InputValidator()
+    assert iv.validate_unit_option(option) == expected_result
 
 
 def test_validate_unit_option_invalid_nope():
     option = "nope"
     expected_result = False
-    assert input_validation.validate_unit_option(option) == expected_result
+    iv = user_interaction.input_validation.InputValidator()
+    assert iv.validate_unit_option(option) == expected_result
 
 
 def test_check_delimiter_valid():

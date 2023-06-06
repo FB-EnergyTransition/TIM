@@ -1,23 +1,26 @@
 from csv_conversion import outfile_validation
-from user_interaction import input_validation
+import user_interaction.input_validation
 
 
 def test_validate_input_csv_path_non_existing_csv_path():
     path = '../resources/test_resources/test2000.csv'
     expected_output = False
-    assert input_validation.validate_input_csv_path(path) == expected_output
+    iv = user_interaction.input_validation.InputValidator()
+    assert iv.validate_input_csv_path(path) == expected_output
 
 
 def test_validate_input_csv_path_invalid_file_type_csv():
     path = '../resources/test_resources/test.txt'
     expected_output = False
-    assert input_validation.validate_input_csv_path(path) == expected_output
+    iv = user_interaction.input_validation.InputValidator()
+    assert iv.validate_input_csv_path(path) == expected_output
 
 
 def test_validate_input_csv_path_valid():
     path = '../resources/test_resources/test.csv'
     expected_output = True
-    assert input_validation.validate_input_csv_path(path) == expected_output
+    iv = user_interaction.input_validation.InputValidator()
+    assert iv.validate_input_csv_path(path) == expected_output
 
 
 def test_check_existing_outfile_valid():
