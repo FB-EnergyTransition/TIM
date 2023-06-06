@@ -1,52 +1,28 @@
 from user_interaction import get_user_input_params, input_validation
+import user_interaction.welcome_and_end
+
+pr = user_interaction.welcome_and_end.Printer()
 
 
-def print_options():
-    print("""
-    Please chose an option:
+class OptionHandler:
 
-    1 - Upload data from CSV
-    2 - Read CSV Requirements
-    """)
+    def __init__(self):
+        pass
 
+    def get_option(self):
+        return input()
 
-def get_option():
-    return input()
-
-
-def print_invalid_option():
-    print("Invalid option. Please chose 1 oder 2.")
-
-
-def print_csv_requirements():
-    print("""
-    These are the requirements a CSV file has to fulfill
-    in order to be uploaded into the InfluxDB:
-    
-    **********************************************************
-    1. Delimiter of csv file has to be ','.
-    2. Decimal separator of values has to be '.'.
-    3. Timestamps have to and can only be in the first column.
-    4. Timestamps have to be in format "dd.MM.YYYY HH:mm:ss".
-    5. Value columns start from the second column.
-    6. Value columns can only contain valid values.
-    7. Headers of the columns should contain the name of the
-    measurements/values.
-    **********************************************************
-    """)
-
-
-def execute_option_and_get_args(option):
-    args = []
-    if input_validation.validate_option(option):
-        if option == "1":
-            args = get_user_input_params.ask_for_parameters()
-        elif option == "2":
-            print_csv_requirements()
-            print_options()
-            execute_option_and_get_args(get_option())
-    else:
-        print_invalid_option()
-        print_options()
-        input_validation.validate_option(get_option())
-    return args
+    def execute_option_and_get_args(self, option):
+        args = []
+        if input_validation.validate_option(option):
+            if option == "1":
+                args = get_user_input_params.ask_for_parameters()
+            elif option == "2":
+                pr.print_csv_requirements()
+                pr.print_options()
+                self.execute_option_and_get_args(self.get_option())
+        else:
+            pr.print_invalid_option()
+            pr.print_options()
+            input_validation.validate_option(self.get_option())
+        return args

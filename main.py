@@ -11,13 +11,14 @@ from user_interaction import option_handling
 
 def main():
     pr = user_interaction.welcome_and_end.Printer()
+    oh = user_interaction.option_handling.OptionHandler()
     pr.print_welcome_screen()
 
     while True:
         try:
-            option_handling.print_options()
-            option = option_handling.get_option()
-            args = option_handling.execute_option_and_get_args(option)
+            pr.print_options()
+            option = oh.get_option()
+            args = oh.execute_option_and_get_args(option)
             infile = args[0]
             measurement = args[1]
             bucket = args[2]
